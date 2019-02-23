@@ -5,7 +5,7 @@ Ordis - изучи сам, научи других
 {% block content %}
 {% if current_user.is_authenticated%}
 <h2>Привет, {{current_user.username}}. Ваш канал называется {{current_user.channel_name}}. Ваши интересы
-    {{current_user.interests}}</h2>
+    {{current_user.interests}}, {{current_user.avatar}}</h2>
 {% else %}
 <h2>Привет, неизвестный пользователь. Вы можете зарегистрироваться или войти.</h2>
 {% endif %}

@@ -37,7 +37,7 @@
         <a href="#" class="search_button"></a>
         {% if current_user.is_anonymous %}
         <a href="{{url_for('login')}}" class="login"></a>
-        <a href="" class="sign_in"></a>
+        <a href="{{url_for('sign_in')}}" class="sign_in"></a>
         {% endif %}
 
     </div>
