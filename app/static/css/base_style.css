@@ -1,0 +1,59 @@
+.up_menu {
+    height: 63px;
+    background-color: #00aeff;
+    width: inherit;
+}
+
+.menu_link {
+    display: block;
+    background-image: url('/static/img/menu_logo.png');
+    width: 35px;
+    height: 29px;
+    float: left;
+    margin-left: 38px;
+    margin-top: 16px;
+}
+
+.learn_button {
+    float: left;
+    background-color: #0090ff !important;
+    border-color: transparent !important;
+    margin-left: 51px;
+    margin-top: 12px;
+}
+
+.search_input {
+    float: left;
+    width: 816px;
+    height: 39px;
+    margin-left: 296px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.search_button {
+    float: left;
+    width: 34px;
+    height: 39px;
+    margin-left: 18px;
+    margin-top: 12px;
+    background-image: url('/static/img/search_button.png');
+}
+.login {
+    float:left;
+    width: 72px;
+    height: 35px;
+    margin-left: 203px;
+    margin-top: 12px;
+    background-image: url('/static/img/login_button.png');
+}
+.sign_in {
+    float:left;
+    width: 198px;
+    height: 35px;
+    margin-left: 18px;
+    margin-top: 12px;
+    background-image: url('/static/img/sign_in_button.png');
+}
