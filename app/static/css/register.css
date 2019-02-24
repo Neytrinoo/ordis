@@ -1,0 +1,78 @@
+.background-center {
+    width: 1010px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    height: 1380px;
+}
+
+.content {
+    height: 1500px;
+}
+
+.form_register {
+    margin-left: 67px;
+}
+
+label {
+    font-size: 18px;
+    color: black;
+    margin-right: 15px;
+}
+
+p {
+    margin-bottom: 50px;
+}
+
+input {
+    border-radius: 10px;
+    border: 1px solid #a4a4a4;
+    box-shadow: none;
+}
+
+.avatar_input {
+    border-radius: 0;
+    border: 0;
+}
+
+.username {
+    width: 425px;
+}
+
+.email {
+    width: 295px;
+}
+
+.interests {
+    width: 830px;
+}
+
+.about_channel {
+    width: 925px;
+    height: 220px;
+    border-radius: 10px;
+    border: 1px solid #a4a4a4;
+    box-shadow: none;
+}
+
+.password {
+    width: 290px;
+}
+
+.user_agreement {
+    font-size: 18px;
+}
+
+.register_head_text {
+    font-size: 24px;
+    color: #0090ff;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.submit_register_form {
+    background-color: #0090ff;
+    color: white;
+    height: 30px;
+    width: 210px;
+    margin-left: 328px;
+}

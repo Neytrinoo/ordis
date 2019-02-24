@@ -41,19 +41,26 @@
     margin-top: 12px;
     background-image: url('/static/img/search_button.png');
 }
+
 .login {
-    float:left;
+    float: left;
     width: 72px;
     height: 35px;
     margin-left: 203px;
     margin-top: 12px;
     background-image: url('/static/img/login_button.png');
 }
+
 .sign_in {
-    float:left;
+    float: left;
     width: 198px;
     height: 35px;
     margin-left: 18px;
     margin-top: 12px;
     background-image: url('/static/img/sign_in_button.png');
+}
+
+.content {
+    background-color: #dfe0e0;
+    height: 100%;
 }

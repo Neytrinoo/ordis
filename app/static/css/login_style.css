@@ -1,0 +1,41 @@
+.background-center {
+    width: 1010px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    height: 1380px;
+}
+
+.register_head_text {
+    font-size: 24px;
+    color: #0090ff;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+label {
+    font-size: 18px;
+    color: black;
+    margin-right: 15px;
+}
+
+p {
+    margin-bottom: 50px;
+}
+
+input {
+    border-radius: 10px;
+    border: 1px solid #a4a4a4;
+    box-shadow: none;
+}
+
+.form_register {
+    margin-left: 67px;
+}
+
+.login_submit {
+    background-color: #0090ff;
+    color: white;
+    height: 30px;
+    width: 110px;
+    margin-left: 400px;
+}

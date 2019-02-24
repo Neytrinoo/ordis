@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, DateField, TextAreaField
-from wtforms.validators import DataRequired, Email, EqualTo, Optional
+from wtforms.validators import DataRequired, Email, EqualTo, Optional, ValidationError
+from app.models import User
 
 
 class LoginForm(FlaskForm):
@@ -15,11 +16,25 @@ class RegistrationForm(FlaskForm):
     channel_name = StringField('Название канала', validators=[DataRequired()])
     avatar = FileField('Выберите аватар')
     email = StringField('E-mail', validators=[DataRequired(), Email()])
-    birthday = DateField('Дата рождения', format='%d/%m/%Y', validators=[Optional()])
+    birthday = DateField('Дата рождения', format='%d.%m.%Y', validators=[Optional()])
     interests = StringField('Интересы')
     about_channel = TextAreaField('Описание канала')
     meta_tags = StringField('Мета-теги')
     password = PasswordField('Пароль', validators=[DataRequired()])
     repeat_password = PasswordField('Повторите пароль', validators=[EqualTo('password')])
-    agree = BooleanField('Я согласен(-на) с пользовательским соглашением')
+    agree = BooleanField('Я согласен(-на) с')
     submit = SubmitField('Зарегистрироваться')
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user is not None:
+            raise ValidationError('Такой пользователь уже зарегистрирован.')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is not None:
+            raise ValidationError('Такой e-mail адресс уже используется.')
+
+    def validate_agree(self, value):
+        if not value.data:
+            raise ValidationError('Необходимо ваше согласие для регистрации.')

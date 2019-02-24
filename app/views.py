@@ -30,48 +30,50 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
+@app.route('/user-argeement')
+def user_agreement():
+    return render_template('user_agreement.html')
+
+
 @app.route('/sign-in', methods=['GET', 'POST'])
 def sign_in():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
-    print('ОК')
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user is not None:
-            flash('Пользователь с таким именем уже существует.')
-        else:
-            file = request.files['avatar'].read()
-            user = User(username=form.username.data, channel_name=form.channel_name.data,
-                        avatar=file, email=form.email.data, birthday=form.birthday.data,
-                        about_channel=form.about_channel.data)
-            user.set_password(form.password.data)
-            interest = form.interests.data.split(',')
+        file = request.files['avatar'].read()
+        user = User(username=form.username.data, channel_name=form.channel_name.data,
+                    avatar=file, email=form.email.data, birthday=form.birthday.data,
+                    about_channel=form.about_channel.data)
+        user.set_password(form.password.data)
+        interest = form.interests.data.split(',')
+        meta_tags = form.meta_tags.data.split(',')
 
-            # Проверка, есть ли данный интерес в базе данных
-            for i in range(len(interest)):
-                interest[i] = interest[i].lower().rstrip().lstrip()
-                if Interests.query.filter_by(text=interest[i]).first() is None:
-                    intt = Interests(text=interest[i])
-                    db.session.add(intt)
-                    db.session.commit()
+        # Проверка, есть ли данный интерес в базе данных
+        for i in range(len(interest)):
+            interest[i] = interest[i].lower().rstrip().lstrip()
+            if Interests.query.filter_by(text=interest[i]).first() is None:
+                db.session.add(Interests(text=interest[i]))
+            if Interests.query.filter_by(text=interest[i]).first() not in user.interests:
                 user.interests.append(Interests.query.filter_by(text=interest[i]).first())
-            meta_tags = form.meta_tags.data.split(',')
-
-            # Проверка, есть ли данный мета-тег в базе данных
-            for i in range(len(meta_tags)):
-                meta_tags[i] = meta_tags[i].lower().rstrip().lstrip()
-                if MetaTags.query.filter_by(text=meta_tags[i]).first() is None:
-                    meta_tag = Interests(text=meta_tags[i])
-                    db.session.add(meta_tag)
-                    db.session.commit()
-                user.meta_tags.append(MetaTags.query.filter_by(text=interest[i]).first())
-
-            db.session.add(user)
             db.session.commit()
-            user = User.query.filter_by(username=form.username.data).first()
-            login_user(user)
-            return redirect(url_for('index'))
+
+        # Проверка, есть ли данный мета-тег в базе данных
+        for i in range(len(meta_tags)):
+            meta_tags[i] = meta_tags[i].lower().rstrip().lstrip()
+            if MetaTags.query.filter_by(text=meta_tags[i]).first() is None:
+                db.session.add(MetaTags(text=meta_tags[i]))
+            if MetaTags.query.filter_by(text=interest[i]).first() not in user.meta_tags:
+                user.meta_tags.append(MetaTags.query.filter_by(text=interest[i]).first())
+            db.session.commit()
+
+        db.session.add(user)
+        db.session.commit()
+        user = User.query.filter_by(username=form.username.data).first()
+        login_user(user)
+        return redirect(url_for('index'))
+
     return render_template('register.html', form=form, title='Регистрация')
 
 

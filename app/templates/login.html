@@ -2,25 +2,31 @@
 {% block title %}
 {{title}}
 {% endblock %}
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/login_style.css')}}">
+{% endblock %}
 {% block content %}
-    <h1>Авторизация</h1>
-    <form action="" method="post" novalidate>
+
+<div class="background-center">
+    <p class="register_head_text">Авторизация</p>
+    <form action="" method="post" novalidate class="form_register">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.username.label }}<br>
+            {{ form.username.label }}
             {{ form.username(size=32) }}
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.password.label }}<br>
+            {{ form.password.label }}
             {{ form.password(size=32) }}
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class='login_submit') }}</p>
     </form>
+</div>
 {% endblock %}
