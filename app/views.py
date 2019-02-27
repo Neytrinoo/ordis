@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, AddLessonForm
 from app.models import User, Interests, MetaTags
 from werkzeug.urls import url_parse
 
@@ -32,7 +32,23 @@ def login():
 
 @app.route('/user-argeement')
 def user_agreement():
-    return render_template('user_agreement.html')
+    return render_template('user_agreement.html', title='Ordis - Пользовательское соглашение')
+
+
+@app.route('/user/<int:id>/avatar')
+def avatar(id):
+    avatar = User.query.filter_by(id=id).first().avatar
+    return app.response_class(avatar, mimetype='application/octet-stream')
+
+
+@app.route('/add_lesson', methods=['GET', 'POST'])
+@login_required
+def add_lesson():
+    form = AddLessonForm()
+    if form.validate_on_submit():
+        file = request.files.getlist('attached_file')
+        print(file[1].read())
+    return render_template('add_lesson.html', form=form, title='Ordis - Добавление урока')
 
 
 @app.route('/sign-in', methods=['GET', 'POST'])
@@ -74,7 +90,7 @@ def sign_in():
         login_user(user)
         return redirect(url_for('index'))
 
-    return render_template('register.html', form=form, title='Регистрация')
+    return render_template('register.html', form=form, title='Ordis - Регистрация')
 
 
 @app.route('/logout')

@@ -1,0 +1,68 @@
+.background-center {
+    width: 1010px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    height: 1380px;
+}
+
+.add_lesson_head_text {
+    font-size: 24px;
+    color: #0090ff;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.content {
+    height: 1500px;
+}
+
+.lesson_name {
+    width: 745px;
+}
+
+.file_field {
+    border-radius: 0;
+    border: none;
+}
+
+label {
+    font-size: 18px;
+    color: black;
+    margin-right: 15px;
+}
+
+p {
+    margin-bottom: 50px;
+}
+
+input, textarea {
+    border-radius: 10px;
+    border: 1px solid #a4a4a4;
+    box-shadow: none;
+}
+
+.about_lesson {
+    width: 900px;
+    height: 200px;
+}
+
+.form_add_lesson {
+    margin-left: 67px;
+}
+
+.extra_material {
+    width: 900px;
+    height: 250px;
+}
+
+.meta_tags {
+    width: 800px;
+}
+
+.submit_lesson_form {
+    background-color: #0090ff;
+    color: white;
+    height: 30px;
+    width: 150px;
+    margin-left: 370px;
+}

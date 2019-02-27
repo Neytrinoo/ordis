@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+{{title}}
+{% endblock %}
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add_lesson_style.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="background-center">
+    <p class="add_lesson_head_text">Добавление урока</p>
+    <form action="" method="post" novalidate enctype="multipart/form-data" class="form_add_lesson">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.lesson_name.label }}
+            {{ form.lesson_name(class='lesson_name') }}
+            {% for error in form.lesson_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.preview.label }}
+            {{ form.preview(class='file_field') }}
+            {% for error in form.preview.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.video.label }}
+            {{ form.video(class='file_field') }}
+            {% for error in form.video.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.about_lesson.label }} <br>
+            {{ form.about_lesson(class='about_lesson', placeholder='Расскажите, о чем этот урок') }}
+            {% for error in form.about_lesson.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.attached_file.label }}
+            {{ form.attached_file(class='file_field', min='1', max='9999') }}
+            {% for error in form.attached_file.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.extra_material.label }} <br>
+            {{ form.extra_material(class='extra_material', placeholder=' Введите сюда дополнительный текст по теме урока, если необходимо') }}
+            {% for error in form.extra_material.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.meta_tags.label }}
+            {{ form.meta_tags(class='meta_tags', placeholder='Мета-теги, по которым люди смогут найти ваш урок. Например, "python, ML, программирование"') }}
+            {% for error in form.meta_tags.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit(class='submit_lesson_form') }}</p>
+    </form>
+</div>
+{% endblock %}

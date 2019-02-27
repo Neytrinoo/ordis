@@ -40,24 +40,65 @@
         {% if current_user.is_anonymous %}
         <a href="{{url_for('login')}}" class="login"></a>
         <a href="{{url_for('sign_in')}}" class="sign_in"></a>
+        {% else %}
+        <div class="dropdown">
+            <a href="#" class="btn btn-secondary dropdown-toggle avatar-menu" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!--<img src="{{url_for('avatar', id=current_user.id)}}" alt="Аватарка">-->
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Профиль</a>
+                <a class="dropdown-item" href="{{url_for('add_lesson')}}">Добавить урок</a>
+                <a class="dropdown-item" href="{{url_for('logout')}}">Выйти</a>
+            </div>
+        </div>
+
         {% endif %}
 
     </div>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{message}}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-        {% block content %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}
 
-        {% endblock %}
+    {% endblock %}
 
 </div>
 <style>
+    {% if current_user.is_authenticated %}
+    .avatar-menu {
+        display: block;
+        background: url("{{url_for('avatar', id=current_user.id)}}") no-repeat;
+        width: 50px;
+        height: 50px;
+        background-size: 100%;
+        margin-left: 300px;
+        margin-top: 5px;
+        border-color: transparent !important;
+        float: left;
+        background-color: transparent !important;
+        /*color: transparent !important;*/
+        padding-left: -20px !important;
+    }
+
+    .avatar-menu:hover {
+        background-color: transparent !important;
+    }
+
+    .avatar-menu::after {
+        margin-left: 43px !important;
+        margin-top: 35px !important;
+    }
+
+    .avatar-menu:focus {
+        background-color: transparent !important;
+    }
+    {% endif %}
 </style>
 </body>
 

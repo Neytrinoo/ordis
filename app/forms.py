@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, DateField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, DateField, TextAreaField, MultipleFileField
 from wtforms.validators import DataRequired, Email, EqualTo, Optional, ValidationError
 from app.models import User
 
@@ -14,12 +14,12 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
     username = StringField('Имя пользователя', validators=[DataRequired()])
     channel_name = StringField('Название канала', validators=[DataRequired()])
-    avatar = FileField('Выберите аватар')
+    avatar = FileField('Выберите аватар(50x50)', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired(), Email()])
     birthday = DateField('Дата рождения', format='%d.%m.%Y', validators=[Optional()])
-    interests = StringField('Интересы')
-    about_channel = TextAreaField('Описание канала')
-    meta_tags = StringField('Мета-теги')
+    interests = StringField('Интересы', validators=[DataRequired()])
+    about_channel = TextAreaField('Описание канала', validators=[DataRequired()])
+    meta_tags = StringField('Мета-теги', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
     repeat_password = PasswordField('Повторите пароль', validators=[EqualTo('password')])
     agree = BooleanField('Я согласен(-на) с')
@@ -38,3 +38,14 @@ class RegistrationForm(FlaskForm):
     def validate_agree(self, value):
         if not value.data:
             raise ValidationError('Необходимо ваше согласие для регистрации.')
+
+
+class AddLessonForm(FlaskForm):
+    lesson_name = StringField('Название урока', validators=[DataRequired()])
+    preview = FileField('Превью урока', validators=[DataRequired()])
+    video = FileField('Видео', validators=[DataRequired()])
+    about_lesson = TextAreaField('Описание урока', validators=[DataRequired()])
+    attached_file = MultipleFileField('Вложенные файлы')
+    extra_material = TextAreaField('Дополнительный материал', validators=[DataRequired()])
+    meta_tags = StringField('Мета-теги', validators=[DataRequired()])
+    submit = SubmitField('Добавить урок')
