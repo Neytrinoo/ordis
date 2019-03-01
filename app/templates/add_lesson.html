@@ -48,14 +48,14 @@
         </p>
         <p>
             {{ form.extra_material.label }} <br>
-            {{ form.extra_material(class='extra_material', placeholder=' Введите сюда дополнительный текст по теме урока, если необходимо') }}
+            {{ form.extra_material(class='extra_material', placeholder='Введите сюда дополнительный текст по теме урока, если необходимо') }}
             {% for error in form.extra_material.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.meta_tags.label }}
-            {{ form.meta_tags(class='meta_tags', placeholder='Мета-теги, по которым люди смогут найти ваш урок. Например, "python, ML, программирование"') }}
+            {{ form.meta_tags(class='meta_tags', placeholder='Мета-теги, введите через запятую. Например, "python, ML, программирование"') }}
             {% for error in form.meta_tags.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}

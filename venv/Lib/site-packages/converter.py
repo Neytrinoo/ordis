@@ -1,0 +1,55 @@
+print " This is the metric converter "
+
+print "What would you like to convert ?"
+print "You can either convert a measurement, weight or volume "
+
+choice = raw_input('>')
+
+if choice == "measurement":
+    print " Well, there are so many options :.."
+    print " Enter 1 to convert from inches to cms "
+    print " Enter 2 to convert from feet to metres  "
+
+    conversion = raw_input('>')
+
+    if conversion == "1":
+       print "Please enter the number of inches "
+       inches = input('>')
+       cms = inches*2.54
+       print " %d inches is %d cms" % ( inches, cms )
+
+    elif conversion == "2":
+        print "Please enter the number of feet "
+        feet = input('>')
+        metres = feet/3.281
+        print " %d feet is %d metres " % (feet, metres)
+
+    else:
+         print "Please enter either #1 or #2 " 
+
+elif choice == "weight" :
+    print " Please choose one of the following options: "
+    print " 1. to change from ounces to grams "
+    print " 2. to change from pounds to kilograms "
+
+    selection = raw_input('>')
+
+    if selection == "1":
+        print "Please enter the number of ounces "
+        ounces=input('>')
+        grams = ounces*28.35
+        print "%d ounces is %d grams" % (ounces, grams)
+
+    elif  selection == "2" :
+        print " Please enter the number of pounds"
+        pounds = input('>')
+        kilograms = pounds*2.2046
+        print "%d pounds is %d kilograms" % ( pounds, kilograms)
+    else:
+        print "You have not entered a choice " 
+else:
+     print " To convert from gallons to liters, please enter the number of gallons"
+     gallons = input ('>')
+     liters = gallons/0.2642
+     print " %d gallons is %d liters" % (gallons, liters)  
+          

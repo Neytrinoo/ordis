@@ -42,8 +42,8 @@ class RegistrationForm(FlaskForm):
 
 class AddLessonForm(FlaskForm):
     lesson_name = StringField('Название урока', validators=[DataRequired()])
-    preview = FileField('Превью урока', validators=[DataRequired()])
-    video = FileField('Видео', validators=[DataRequired()])
+    preview = FileField('Превью урока', validators=[DataRequired()], render_kw={'accept': 'image/*'})
+    video = FileField('Видео', validators=[DataRequired()], render_kw={'accept': 'video/*'})
     about_lesson = TextAreaField('Описание урока', validators=[DataRequired()])
     attached_file = MultipleFileField('Вложенные файлы')
     extra_material = TextAreaField('Дополнительный материал', validators=[DataRequired()])

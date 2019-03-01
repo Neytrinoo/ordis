@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}
+{{title}}
+{% endblock %}
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="background-center">
+    <p class="register_head_text">Регистрация</p>
+    <form action="" method="post" novalidate enctype="multipart/form-data" class="form_register">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}
+            {{ form.username(class='username') }}
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.channel_name.label }}
+            {{ form.channel_name(class='username') }}
+            {% for error in form.channel_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.avatar.label }}
+            {{ form.avatar(size=32, class='avatar_input') }}
+            {% for error in form.avatar.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.email.label }}
+            {{ form.email(class='email') }}
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.birthday.label }}
+            {{ form.birthday(size=32, placeholder='dd.mm.yyyy') }}
+            {% for error in form.birthday.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.interests.label }}
+            {{ form.interests(class='interests', placeholder='Введите ваши интересы через запятую. Например, "программирование, чтение, математика"') }}
+            {% for error in form.interests.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.about_channel.label }} <br>
+            {{ form.about_channel(class='about_channel', placeholder='Расскажите, о чем будет ваш канал...') }}
+            {% for error in form.about_channel.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.meta_tags.label }}
+            {{ form.meta_tags(class='interests', placeholder='Мета-теги, по которым люди смогут найти ваш канал. Например, "философия, линейная алгебра, биология"') }}
+            {% for error in form.about_channel.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}
+            {{ form.password(class='password') }}
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.repeat_password.label }}
+            {{ form.repeat_password(class='password') }}
+            {% for error in form.repeat_password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.agree() }} {{ form.agree.label }}<a href="{{url_for('user_agreement')}}" class="user_agreement">пользовательским соглашением</a>{% for error in form.agree.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}</p>
+        <p>{{ form.submit(class='submit_register_form') }}</p>
+    </form>
+</div>
+{% endblock %}
