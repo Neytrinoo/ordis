@@ -9,4 +9,8 @@ Ordis - изучи сам, научи других
 {% else %}
 <h2>Привет, неизвестный пользователь. Вы можете зарегистрироваться или войти.</h2>
 {% endif %}
+<video width="400" height="300" controls="controls" poster="video/duel.jpg">
+   <source src="{{ url_for('static', filename='data/videos/user1_1.mp4')}}">
+   <a href="video/duel.mp4">Скачайте видео</a>.
+  </video>
 {% endblock %}

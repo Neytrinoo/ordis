@@ -58,6 +58,7 @@ class AttachedFile(db.Model):
 class VideoLesson(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     file_path = db.Column(db.String(400))
+    duration = db.Column(db.String(10))
 
 
 # Одиночный урок, который не входит в курс

@@ -4,7 +4,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import LoginForm, RegistrationForm, AddLessonForm
 from app.models import User, Interests, MetaTags, SingleLesson, VideoLesson, AttachedFile, MetaTagsLesson
 from werkzeug.urls import url_parse
-from moviepy.editor import VideoClip
+from moviepy.editor import VideoFileClip
 
 
 @app.route('/')
@@ -53,8 +53,10 @@ def add_lesson():
         # Путь до видео урока в файловой системе. Создается так: data/videos/имяПользователя_КоличествоУроковУПользователя+1.расширениеФайла
         video_path = 'data/videos/' + current_user.username + '_' + str(len(current_user.lessons) + 1) + '.' + video.filename.split('.')[-1]
         video.save('app/static/' + video_path)
-        video = VideoLesson(file_path=video_path)
-        lesson = SingleLesson(lesson_name=form.lesson_name.data, preview=preview, about_lesson=form.about_lesson.data, extra_material=form.extra_material.data, video=video)
+        clip = VideoFileClip('app/static/' + video_path)
+        video = VideoLesson(file_path=video_path, duration=clip.duration)
+        lesson = SingleLesson(lesson_name=form.lesson_name.data, preview=preview, about_lesson=form.about_lesson.data, extra_material=form.extra_material.data,
+                              video=video)
 
         # Форматируем и добавляем мета-теги
         meta_tags = form.meta_tags.data.split(',')
@@ -131,4 +133,3 @@ def sign_in():
 def logout():
     logout_user()  # Разлогиниваем пользователя
     return redirect(url_for('index'))
-
