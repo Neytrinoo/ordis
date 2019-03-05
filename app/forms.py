@@ -49,3 +49,8 @@ class AddLessonForm(FlaskForm):
     extra_material = TextAreaField('Дополнительный материал', validators=[DataRequired()])
     meta_tags = StringField('Мета-теги', validators=[DataRequired()])
     submit = SubmitField('Добавить урок')
+
+
+class ChannelHeadForm(FlaskForm):
+    image = FileField('Картинка', render_kw={'accept': 'image/*'})
+    submit = SubmitField('Изменить оформление канала')

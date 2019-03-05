@@ -15,6 +15,10 @@ meta_tags_lesson_table = db.Table('tags_lesson',
                                   db.Column('lesson_id', db.Integer, db.ForeignKey('single_lesson.id')),
                                   db.Column('meta_tag_lesson_id', db.Integer, db.ForeignKey('meta_tags_lesson.id'))
                                   )
+subscribers_channel = db.Table('subscribers_channel',
+                               db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+                               db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+                               )
 
 
 # Таблица пользователя
@@ -29,6 +33,11 @@ class User(UserMixin, db.Model):
     about_channel = db.Column(db.Text(3000))
     meta_tags = db.relationship('MetaTags', secondary=meta_tags_table, backref=db.backref('users', lazy='dynamic'))
     password_hash = db.Column(db.String(120))
+    channel_head = db.Column(db.LargeBinary)
+    # Самореферентное отношение между базой данных пользователей для реализации подписки
+    followed = db.relationship('User', secondary=subscribers_channel, primaryjoin=(subscribers_channel.c.follower_id == id),
+                               secondaryjoin=(subscribers_channel.c.followed_id == id),
+                               backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
 
     def __repr__(self):
         return '<User {}, channel_name {}>'.format(self.username, self.channel_name)
@@ -39,8 +48,19 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
 
-# Мета-теги для урока
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    def is_following(self, user):
+        return self.followed.filter(subscribers_channel.c.followed_id == user.id).count() > 0
+    # Мета-теги для урока
+
+
 class MetaTagsLesson(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(600), nullable=False)

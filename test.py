@@ -5,4 +5,5 @@ import os, sys
 from app.models import VideoLesson, SingleLesson, MetaTagsLesson, meta_tags_lesson_table
 import subprocess
 
-print(SingleLesson.query.filter_by(id=1).first().meta_tags)
+clip = VideoFileClip('app/static/data/videos/user1_1.mp4')
+print(clip.duration)

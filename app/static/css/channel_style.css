@@ -1,0 +1,37 @@
+.channel_head {
+    height: 245px;
+    width: 1920px;
+    margin-top: -2px;
+    padding-top: 190px;
+}
+
+.change_head_btn {
+    display: block;
+    -webkit-appearance: none !important;
+    background: url('/static/img/change_channel_head_button.png') no-repeat;
+    background-color: transparent !important;
+    width: 25px;
+    height: 48px;
+    margin-left: 1851px;
+}
+
+.change_channel_head {
+    background-color: #0090ff;
+    border-radius: 10px;
+    color: white;
+    height: 30px;
+    box-shadow: none;
+    width: 250px;
+    margin-top: 20px;
+    margin-left: 120px;
+}
+
+.channel_menu {
+    height: 90px;
+    width: inherit;
+    background-color: white;
+}
+.channel_name {
+    padding-top: 10px;
+    font-size: 18px;
+}

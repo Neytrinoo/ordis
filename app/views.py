@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm, AddLessonForm
+from app.forms import LoginForm, RegistrationForm, AddLessonForm, ChannelHeadForm
 from app.models import User, Interests, MetaTags, SingleLesson, VideoLesson, AttachedFile, MetaTagsLesson
 from werkzeug.urls import url_parse
 from moviepy.editor import VideoFileClip
@@ -42,6 +42,12 @@ def avatar(id):
     return app.response_class(avatar, mimetype='application/octet-stream')
 
 
+@app.route('/user/<int:user_id>/channel_head')
+def channel_head(user_id):
+    channel_head = User.query.filter_by(id=user_id).first().channel_head
+    return app.response_class(channel_head, mimetype='application/octet-stream')
+
+
 @app.route('/add_lesson', methods=['GET', 'POST'])
 @login_required
 def add_lesson():
@@ -54,7 +60,7 @@ def add_lesson():
         video_path = 'data/videos/' + current_user.username + '_' + str(len(current_user.lessons) + 1) + '.' + video.filename.split('.')[-1]
         video.save('app/static/' + video_path)
         clip = VideoFileClip('app/static/' + video_path)
-        video = VideoLesson(file_path=video_path, duration=clip.duration)
+        video = VideoLesson(file_path=video_path, duration=str(int(clip.duration)))
         lesson = SingleLesson(lesson_name=form.lesson_name.data, preview=preview, about_lesson=form.about_lesson.data, extra_material=form.extra_material.data,
                               video=video)
 
@@ -86,6 +92,28 @@ def add_lesson():
         return redirect(url_for('index'))
 
     return render_template('add_lesson.html', form=form, title='Ordis - Добавление урока')
+
+
+@app.route('/channel/<int:user_id>', methods=['GET', 'POST'])
+def channel(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if user is None:
+        flash('Такого канала не существует')
+        return redirect(url_for('index'))
+    is_channel_head = True
+    if user.channel_head is None:
+        print(user.channel_head)
+        is_channel_head = False
+    form = ChannelHeadForm()
+    channel_name = user.channel_name
+    if form.validate_on_submit():
+        if form.image.data:
+            file = request.files['image'].read()
+            user.channel_head = file
+            db.session.commit()
+        return redirect(url_for('channel', user_id=user_id))
+
+    return render_template('channel.html', title=user.channel_name + ' - Ordis', user_id=user_id, is_channel_head=is_channel_head, form=form, channel_name=channel_name)
 
 
 @app.route('/sign-in', methods=['GET', 'POST'])
