@@ -1,0 +1,25 @@
+{% extends 'channel.html' %}
+{% block links2 %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/channel_main_style.css')}}">
+{% endblock %}
+{% block channel_content %}
+<p class="channel_content_title">Популярные уроки</p>
+<div class="lessons_column">
+    <div class="block_lesson">
+        <a class="preview"></a>
+        <p class="lesson_name">{{lessons[0].lesson_name}}</p>
+        <div class="time">
+            <div class="icon_time"></div>
+            <p>{{lessons[0].duration}}</p>
+        </div>
+    </div>
+</div>
+<style>
+    .preview {
+        background: url("{{url_for('lesson_preview', id=lessons[0].id)}}") no-repeat;
+        background-size: 100%;
+        border-color: transparent !important;
+        background-color: transparent !important;
+    }
+</style>
+{% endblock %}

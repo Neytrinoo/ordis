@@ -1,0 +1,34 @@
+.channel_content_title {
+    font-size: 24px;
+    margin-left: 280px;
+    margin-top: 19px;
+    color: #0090ff;
+}
+.block_lesson {
+    height: 266px;
+    width: 215px;
+    background-color: #fff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.preview {
+    display: block;
+    height: 145px;
+    width: inherit;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.lesson_name {
+    font-size: 14px;
+    margin-left: 10px;
+}
+.icon_time {
+    width: 15px;
+    height: 15px;
+    background-image: url('/static/img/time_icon.png');
+}
+.time {
+    margin-left: 10px;
+}

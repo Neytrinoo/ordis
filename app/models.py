@@ -90,6 +90,7 @@ class SingleLesson(db.Model):
     video = db.relationship('VideoLesson', backref=db.backref('lesson', uselist=False))  # Связь один-к-одному с таблицей VideoLesson
     about_lesson = db.Column(db.String(3000))
     extra_material = db.Column(db.String(5000))
+    views = db.Column(db.Integer, default=0)
     meta_tags = db.relationship('MetaTagsLesson', secondary=meta_tags_lesson_table, backref=db.backref('lesson', lazy='dynamic'))  # Связь многие-ко-многим с таблицей
     # MetaTagsLesson
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Связь один-ко-многим с таблицей User

@@ -42,6 +42,12 @@ def avatar(id):
     return app.response_class(avatar, mimetype='application/octet-stream')
 
 
+@app.route('/lesson/<int:id>/preview')
+def lesson_preview(id):
+    preview = SingleLesson.query.filter_by(id=id).first().preview
+    return app.response_class(preview, mimetype='application/octet-stream')
+
+
 @app.route('/user/<int:user_id>/channel_head')
 def channel_head(user_id):
     channel_head = User.query.filter_by(id=user_id).first().channel_head
@@ -60,7 +66,18 @@ def add_lesson():
         video_path = 'data/videos/' + current_user.username + '_' + str(len(current_user.lessons) + 1) + '.' + video.filename.split('.')[-1]
         video.save('app/static/' + video_path)
         clip = VideoFileClip('app/static/' + video_path)
-        video = VideoLesson(file_path=video_path, duration=str(int(clip.duration)))
+        duration = int(clip.duration)
+        res = ''
+        m = duration // 60
+        if m > 0:
+            duration -= m * 60
+        h = duration // 3600
+        if h > 0:
+            duration -= h * 3600
+        res = str(m) + ':' + str(duration)
+        if h > 0:
+            res = str(h) + ':' + res
+        video = VideoLesson(file_path=video_path, duration=res)
         lesson = SingleLesson(lesson_name=form.lesson_name.data, preview=preview, about_lesson=form.about_lesson.data, extra_material=form.extra_material.data,
                               video=video)
 
@@ -94,8 +111,38 @@ def add_lesson():
     return render_template('add_lesson.html', form=form, title='Ordis - Добавление урока')
 
 
-@app.route('/channel/<int:user_id>', methods=['GET', 'POST'])
-def channel(user_id):
+@app.route('/subscribe/<username>')
+@login_required
+def subscribe(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('Пользователь {} не найден'.format(username))
+        return redirect(url_for('index'))
+    current_user.follow(user)
+    db.session.commit()
+    next_page = request.args.get('next')
+    if not next_page or url_parse(next_page).netloc != '':
+        next_page = url_for('channel_main', user_id=user.id)
+    return redirect(next_page)
+
+
+@app.route('/unsubscribe/<username>')
+@login_required
+def unsubscribe(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('Пользователь {} не найден'.format(username))
+        return redirect(url_for('index'))
+    current_user.unfollow(user)
+    db.session.commit()
+    next_page = request.args.get('next')
+    if not next_page or url_parse(next_page).netloc != '':
+        next_page = url_for('channel_main', user_id=user.id)
+    return redirect(next_page)
+
+
+@app.route('/channel/<int:user_id>/main', methods=['GET', 'POST'])
+def channel_main(user_id):
     user = User.query.filter_by(id=user_id).first()
     if user is None:
         flash('Такого канала не существует')
@@ -111,9 +158,11 @@ def channel(user_id):
             file = request.files['image'].read()
             user.channel_head = file
             db.session.commit()
-        return redirect(url_for('channel', user_id=user_id))
-
-    return render_template('channel.html', title=user.channel_name + ' - Ordis', user_id=user_id, is_channel_head=is_channel_head, form=form, channel_name=channel_name)
+        return redirect(url_for('channel_main', user_id=user_id))
+    lessons = user.lessons
+    lessons = list(sorted(lessons, key=lambda x: x.views))
+    return render_template('channel_main.html', title=user.channel_name + ' - Ordis', user=user, is_channel_head=is_channel_head, form=form, channel_name=channel_name,
+                           lessons=lessons)
 
 
 @app.route('/sign-in', methods=['GET', 'POST'])

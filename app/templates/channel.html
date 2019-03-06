@@ -4,10 +4,12 @@
 {% endblock %}
 {% block links%}
 <link rel="stylesheet" href="{{url_for('static', filename='css/channel_style.css')}}">
+{% block links2 %}
+{% endblock %}
 {% endblock %}
 {% block content %}
 <div class="channel_head">
-    {% if user_id == current_user.id%}
+    {% if user.id == current_user.id%}
     <a type="button" class="btn btn-primary change_head_btn" data-toggle="modal" data-target="#exampleModal">
     </a>
 
@@ -45,12 +47,26 @@
 <div class="channel_menu">
     <div class="user_avatar"></div>
     <p class="channel_name">{{channel_name}}</p>
+    <div class="page_select">
+        <a href="" id="main_page_link">Главная</a>
+        <a href="" id="courses_link">Курсы</a>
+        <a href="" id="lessons_link">Уроки</a>
+        <a href="" id="about_channel_link">О канале</a>
+    </div>
+    {% if not current_user.is_following(user) %}
+    <a href="{{url_for('subscribe', username=user.username)}}" class="subscribe">Подписаться</a>
+    {% else %}
+    <a href="{{url_for('unsubscribe', username=user.username)}}" class="subscribe">Отписаться</a>
+    {% endif %}
+    <p class="count_subscribers">{{user.followers.count()}}</p>
 </div>
+{% block channel_content %}
+{% endblock %}
 
 <style>
     .user_avatar {
         display: block;
-        background: url("{{url_for('avatar', id=current_user.id)}}") no-repeat;
+        background: url("{{url_for('avatar', id=user.id)}}") no-repeat;
         width: 80px;
         height: 80px;
         background-size: 100%;
@@ -64,7 +80,7 @@
     }
     .channel_head {
     {% if is_channel_head %}
-    background: url("{{url_for('channel_head', user_id=user_id)}}") no-repeat;
+    background: url("{{url_for('channel_head', user_id=user.id)}}") no-repeat;
     {% else %}
     background: url("{{ url_for('static', filename='data/base/base_channel_head.png')}}");
     {%endif%}

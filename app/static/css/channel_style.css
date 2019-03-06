@@ -34,4 +34,58 @@
 .channel_name {
     padding-top: 10px;
     font-size: 18px;
+    float: left;
+}
+.page_select {
+    float: left;
+    position: absolute;
+    margin-left: 607px;
+    margin-top: 55px;
+}
+.page_select a{
+    margin-right: 156px;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+.page_select a:hover {
+    color: #0090ff;
+}
+#main_page_link {
+    border-bottom: 1px solid #0090ff;
+}
+.subscribe {
+    display: block;
+    float: left;
+    position: absolute;
+    margin-left: 1600px;
+    background-color: #0090ff;
+    height: 30px;
+    width: 136px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 29px;
+    text-decoration: none;
+}
+.subscribe:hover {
+    text-decoration: none;
+    color:white
+}
+.count_subscribers {
+    position: absolute;
+    margin-left: 1750px;
+    margin-top: 31px;
+    background-color: #00aeff;
+    height: 25px;
+    color: white;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }

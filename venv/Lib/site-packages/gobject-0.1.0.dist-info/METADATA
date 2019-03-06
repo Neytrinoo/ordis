@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: gobject
+Version: 0.1.0
+Summary: Pythonic Google Geocode API wrapper
+Home-page: https://github.com/pvlbzn/gobject
+Author: Pavel Bazin
+Author-email: pvlbzn@gmail.com
+License: MIT
+Keywords: google geocode api wrapper
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+
+UNKNOWN
+
+

@@ -46,7 +46,7 @@
                 <!--<img src="{{url_for('avatar', id=current_user.id)}}" alt="Аватарка">-->
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="{{url_for('channel', user_id=current_user.id)}}">Профиль</a>
+                <a class="dropdown-item" href="{{url_for('channel_main', user_id=current_user.id)}}">Профиль</a>
                 <a class="dropdown-item" href="{{url_for('add_lesson')}}">Добавить урок</a>
                 <a class="dropdown-item" href="{{url_for('logout')}}">Выйти</a>
             </div>
