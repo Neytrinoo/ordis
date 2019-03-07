@@ -1,7 +1,7 @@
 from app import app, db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from datetime import datetime
 interests_table = db.Table('interests_user',
                            db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
                            db.Column('interest_id', db.Integer, db.ForeignKey('interests.id'))
@@ -95,6 +95,7 @@ class SingleLesson(db.Model):
     # MetaTagsLesson
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Связь один-ко-многим с таблицей User
     user = db.relationship('User', backref=db.backref('lessons', lazy=True))
+    date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 # Интересы пользователя

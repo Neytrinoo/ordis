@@ -5,6 +5,24 @@ from app.forms import LoginForm, RegistrationForm, AddLessonForm, ChannelHeadFor
 from app.models import User, Interests, MetaTags, SingleLesson, VideoLesson, AttachedFile, MetaTagsLesson
 from werkzeug.urls import url_parse
 from moviepy.editor import VideoFileClip
+from datetime import datetime
+
+VIEWS = {
+    '1': 'просмотр',
+    '2': 'просмотра',
+    '3': 'просмотра',
+    '4': 'просмотра',
+    '5': 'просмотров',
+    '6': 'просмотров',
+    '7': 'просмотров',
+    '8': 'просмотров',
+    '9': 'просмотров',
+    '0': 'просмотров',
+    '11': 'просмотров',
+    '12': 'просмотров',
+    '13': 'просмотров',
+    '14': 'просмотров',
+}
 
 
 @app.route('/')
@@ -74,9 +92,9 @@ def add_lesson():
         h = duration // 3600
         if h > 0:
             duration -= h * 3600
-        res = str(m) + ':' + str(duration)
+        res = '0' * (2 - len(str(m))) + str(m) + ':' + '0' * (2 - len(str(duration))) + str(duration)
         if h > 0:
-            res = str(h) + ':' + res
+            res = '0' * (2 - len(str(h))) + str(h) + ':' + res
         video = VideoLesson(file_path=video_path, duration=res)
         lesson = SingleLesson(lesson_name=form.lesson_name.data, preview=preview, about_lesson=form.about_lesson.data, extra_material=form.extra_material.data,
                               video=video)
@@ -161,8 +179,27 @@ def channel_main(user_id):
         return redirect(url_for('channel_main', user_id=user_id))
     lessons = user.lessons
     lessons = list(sorted(lessons, key=lambda x: x.views))
+    views_name = []
+    dates = []
+    for lesson in lessons:
+        view = str(lesson.views)
+        res = ''
+        if view in VIEWS:
+            res = VIEWS[view]
+        elif len(view) >= 2 and view[-2:] in VIEWS:
+            res = VIEWS[view[-2:]]
+        else:
+            res = VIEWS[view[-1]]
+        views_name.append(res)
+        now = datetime.utcnow()
+        if (now - lesson.date_added).days == 0:
+            date = lesson.date_added.strftime('%H:%M')
+        else:
+            date = lesson.date_added.strftime('%d.%m.%Y')
+        dates.append(date)
+
     return render_template('channel_main.html', title=user.channel_name + ' - Ordis', user=user, is_channel_head=is_channel_head, form=form, channel_name=channel_name,
-                           lessons=lessons)
+                           lessons=lessons[:5], views=views_name, dates=dates)
 
 
 @app.route('/sign-in', methods=['GET', 'POST'])
