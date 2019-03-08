@@ -28,16 +28,32 @@ class RegistrationForm(FlaskForm):
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
-            raise ValidationError('Такой пользователь уже зарегистрирован.')
+            raise ValidationError('Такой пользователь уже зарегистрирован')
+        if len(username.data) >= 100:
+            raise ValidationError('Длина не должна превышать 100 символов')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Такой e-mail адресс уже используется.')
+        if len(email.data) >= 200:
+            raise ValidationError('Длина не должна превышать 200 символов')
 
     def validate_agree(self, value):
         if not value.data:
             raise ValidationError('Необходимо ваше согласие для регистрации.')
+
+    def validate_channel_name(self, channel_name):
+        if len(channel_name.data) >= 200:
+            raise ValidationError('Длина не должна превышать 200 символов')
+
+    def validate_about_channel(self, about_channel):
+        if len(about_channel.data) >= 3000:
+            raise ValidationError('Длина не должна превышать 3000 символов')
+
+    def validate_password(self, password):
+        if len(password.data) >= 120:
+            raise ValidationError('Длина не должна превышать 120 символов')
 
 
 class AddLessonForm(FlaskForm):
@@ -49,6 +65,18 @@ class AddLessonForm(FlaskForm):
     extra_material = TextAreaField('Дополнительный материал', validators=[DataRequired()])
     meta_tags = StringField('Мета-теги', validators=[DataRequired()])
     submit = SubmitField('Добавить урок')
+
+    def validate_lesson_name(self, lesson_name):
+        if len(lesson_name.data) >= 256:
+            raise ValidationError('Длина не должна превышать 256 символов')
+
+    def validate_about_lesson(self, about_lesson):
+        if len(about_lesson.data) >= 3000:
+            raise ValidationError('Длина не должна превышать 3000 символов')
+
+    def validate_extra_material(self, extra_material):
+        if len(extra_material.data) >= 20000:
+            raise ValidationError('Длина не должна превышать 20000 символов')
 
 
 class ChannelHeadForm(FlaskForm):

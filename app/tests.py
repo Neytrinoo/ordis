@@ -2,7 +2,7 @@ import unittest
 from app import app, db
 from app.models import User, MetaTags, Interests
 from datetime import datetime, timedelta
-
+from zipfile import ZipFile
 
 class UserModelCase(unittest.TestCase):
     def setUp(self):

@@ -6,6 +6,8 @@ from app.models import User, Interests, MetaTags, SingleLesson, VideoLesson, Att
 from werkzeug.urls import url_parse
 from moviepy.editor import VideoFileClip
 from datetime import datetime
+from zipfile import ZipFile
+from os.path import join, dirname, realpath
 
 VIEWS = {
     '1': 'просмотр',
@@ -54,24 +56,28 @@ def user_agreement():
     return render_template('user_agreement.html', title='Ordis - Пользовательское соглашение')
 
 
+# Возвращает аватар
 @app.route('/user/<int:id>/avatar')
 def avatar(id):
     avatar = User.query.filter_by(id=id).first().avatar
     return app.response_class(avatar, mimetype='application/octet-stream')
 
 
+# Возвращает картинку превью урока
 @app.route('/lesson/<int:id>/preview')
 def lesson_preview(id):
     preview = SingleLesson.query.filter_by(id=id).first().preview
     return app.response_class(preview, mimetype='application/octet-stream')
 
 
+# Возвращает картинку шапки канала из базы данных
 @app.route('/user/<int:user_id>/channel_head')
 def channel_head(user_id):
     channel_head = User.query.filter_by(id=user_id).first().channel_head
     return app.response_class(channel_head, mimetype='application/octet-stream')
 
 
+# Добавление урока
 @app.route('/add_lesson', methods=['GET', 'POST'])
 @login_required
 def add_lesson():
@@ -103,6 +109,8 @@ def add_lesson():
         meta_tags = form.meta_tags.data.split(',')
         for i in range(len(meta_tags)):
             meta_tags[i] = meta_tags[i].lower().rstrip().lstrip()
+            if len(meta_tags[i]) >= 600:
+                continue
             if MetaTagsLesson.query.filter_by(text=meta_tags[i]).first() is None:
                 db.session.add(MetaTagsLesson(text=meta_tags[i]))
             if MetaTagsLesson.query.filter_by(text=meta_tags[i]).first() not in lesson.meta_tags:
@@ -111,12 +119,18 @@ def add_lesson():
 
         # Добавляем вложенные файлы
         attached_files = request.files.getlist('attached_file')
+        myzip = ZipFile(join(dirname(realpath(__file__)), 'static/data/attached_files_archives/' + current_user.username + '_' + str(lesson.id) + '.zip'), 'w')
         for i in range(len(attached_files)):
             # Путь до вложенного файла в файловой системе. Создается так: data/attached_files/имяПользователя_idУрока_КоличествоВложенныхФайловВУроке+1.расширениеФайла
             file_path = 'data/attached_files/' + current_user.username + '_' + str(lesson.id) + '_' + str(len(lesson.attached_files) + 1) + '.' + \
                         attached_files[i].filename.split('.')[-1]
             attached_files[i].save('app/static/' + file_path)
-            file = AttachedFile(file_path=file_path)
+            if len(attached_files[i].filename) >= 119:
+                file = AttachedFile(file_path=file_path, filename='attached_files' + attached_files[i].filename.split('.')[-1])
+            else:
+                file = AttachedFile(file_path=file_path, filename=attached_files[i].filename)
+            myzip.write(join(dirname(realpath(__file__)), 'static/' + file_path), arcname=attached_files[i].filename)
+            lesson.archive_attached_files_path = 'data/attached_files_archives/' + current_user.username + '_' + str(lesson.id) + '.zip'
             lesson.attached_files.append(file)
             db.session.add(file)
             db.session.commit()
@@ -129,13 +143,15 @@ def add_lesson():
     return render_template('add_lesson.html', form=form, title='Ordis - Добавление урока')
 
 
+# Подписаться на канал
 @app.route('/subscribe/<username>')
-@login_required
 def subscribe(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
         flash('Пользователь {} не найден'.format(username))
         return redirect(url_for('index'))
+    if current_user.is_anonymous:
+        return redirect(url_for('sign_in'))
     current_user.follow(user)
     db.session.commit()
     next_page = request.args.get('next')
@@ -144,13 +160,15 @@ def subscribe(username):
     return redirect(next_page)
 
 
+# Отписаться от канала
 @app.route('/unsubscribe/<username>')
-@login_required
 def unsubscribe(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
         flash('Пользователь {} не найден'.format(username))
         return redirect(url_for('index'))
+    if current_user.is_anonymous:
+        return redirect(url_for('sign_in'))
     current_user.unfollow(user)
     db.session.commit()
     next_page = request.args.get('next')
@@ -159,6 +177,18 @@ def unsubscribe(username):
     return redirect(next_page)
 
 
+def correct_form_views(view):
+    view = str(view)
+    if view in VIEWS:
+        res = VIEWS[view]
+    elif len(view) >= 2 and view[-2:] in VIEWS:
+        res = VIEWS[view[-2:]]
+    else:
+        res = VIEWS[view[-1]]
+    return res
+
+
+# Страница канала
 @app.route('/channel/<int:user_id>/main', methods=['GET', 'POST'])
 def channel_main(user_id):
     user = User.query.filter_by(id=user_id).first()
@@ -171,6 +201,7 @@ def channel_main(user_id):
         is_channel_head = False
     form = ChannelHeadForm()
     channel_name = user.channel_name
+    # Обработка изменения шапки канала
     if form.validate_on_submit():
         if form.image.data:
             file = request.files['image'].read()
@@ -178,21 +209,16 @@ def channel_main(user_id):
             db.session.commit()
         return redirect(url_for('channel_main', user_id=user_id))
     lessons = user.lessons
-    lessons = list(sorted(lessons, key=lambda x: x.views))
+    lessons = list(reversed(sorted(lessons, key=lambda x: x.views)))
     views_name = []
     dates = []
+    # Добавляем в views_name правильное склонение числа просмотров, а в dates - правильное отображение даты.
+    # Если урок добавлен в нынешний день, то время, если нет - то дата
     for lesson in lessons:
-        view = str(lesson.views)
-        res = ''
-        if view in VIEWS:
-            res = VIEWS[view]
-        elif len(view) >= 2 and view[-2:] in VIEWS:
-            res = VIEWS[view[-2:]]
-        else:
-            res = VIEWS[view[-1]]
+        res = correct_form_views(lesson.views)
         views_name.append(res)
         now = datetime.utcnow()
-        if (now - lesson.date_added).days == 0:
+        if lesson.date_added.day == now.day:
             date = lesson.date_added.strftime('%H:%M')
         else:
             date = lesson.date_added.strftime('%d.%m.%Y')
@@ -202,6 +228,21 @@ def channel_main(user_id):
                            lessons=lessons[:5], views=views_name, dates=dates)
 
 
+# Страница урока
+@app.route('/lesson/<int:lesson_id>')
+def lesson_page(lesson_id):
+    lesson = SingleLesson.query.filter_by(id=lesson_id).first()
+    if lesson is None:
+        flash('Такого урока нет!')
+        return redirect(url_for('index'))
+    lesson.views += 1
+    db.session.commit()
+    views = correct_form_views(lesson.views)
+    filenames = ', '.join([file.filename for file in lesson.attached_files])
+    return render_template('lesson_page.html', title=lesson.lesson_name + ' - Ordis', lesson=lesson, views=views, filenames=filenames)
+
+
+# Регистрация
 @app.route('/sign-in', methods=['GET', 'POST'])
 def sign_in():
     if current_user.is_authenticated:
@@ -219,6 +260,8 @@ def sign_in():
         # Проверка, есть ли данный интерес в базе данных
         for i in range(len(interest)):
             interest[i] = interest[i].lower().rstrip().lstrip()
+            if len(interest[i]) >= 256:
+                continue
             if Interests.query.filter_by(text=interest[i]).first() is None:
                 db.session.add(Interests(text=interest[i]))
             if Interests.query.filter_by(text=interest[i]).first() not in user.interests:
@@ -228,6 +271,8 @@ def sign_in():
         # Проверка, есть ли данный мета-тег в базе данных
         for i in range(len(meta_tags)):
             meta_tags[i] = meta_tags[i].lower().rstrip().lstrip()
+            if len(meta_tags[i]) >= 256:
+                continue
             if MetaTags.query.filter_by(text=meta_tags[i]).first() is None:
                 db.session.add(MetaTags(text=meta_tags[i]))
             if MetaTags.query.filter_by(text=meta_tags[i]).first() not in user.meta_tags:

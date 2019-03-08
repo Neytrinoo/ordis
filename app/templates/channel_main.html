@@ -9,8 +9,8 @@
     {% for i in range(lessons|length)%}
     <div class="lessons_column">
         <div class="block_lesson">
-            <a href="" class="preview" style="background: url({{url_for('lesson_preview', id=lessons[i].id)}}) no-repeat; background-size:100%;"></a>
-            <div class="lesson_name_block"><a href="" class="lesson_name">{{lessons[i].lesson_name}}</a>
+            <a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="preview" style="background: url({{url_for('lesson_preview', id=lessons[i].id)}}) no-repeat; background-size:100%;"></a>
+            <div class="lesson_name_block"><a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="lesson_name">{{lessons[i].lesson_name}}</a>
             </div>
             <div class="time">
                 <div class="icon_time"></div>

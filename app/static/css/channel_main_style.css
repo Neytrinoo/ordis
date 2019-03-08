@@ -111,7 +111,7 @@ p {
 }
 
 .content {
-    height: 1080px;
+   overflow: auto;
 }
 
 #main_page_link {

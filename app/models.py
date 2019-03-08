@@ -2,6 +2,7 @@ from app import app, db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+
 interests_table = db.Table('interests_user',
                            db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
                            db.Column('interest_id', db.Integer, db.ForeignKey('interests.id'))
@@ -25,14 +26,14 @@ subscribers_channel = db.Table('subscribers_channel',
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True)
-    channel_name = db.Column(db.String(100))
+    channel_name = db.Column(db.String(200))
     avatar = db.Column(db.LargeBinary)
-    email = db.Column(db.String(120), unique=True)
+    email = db.Column(db.String(200), unique=True)
     birthday = db.Column(db.DateTime)
     interests = db.relationship('Interests', secondary=interests_table, backref=db.backref('users', lazy='dynamic'))
     about_channel = db.Column(db.Text(3000))
     meta_tags = db.relationship('MetaTags', secondary=meta_tags_table, backref=db.backref('users', lazy='dynamic'))
-    password_hash = db.Column(db.String(120))
+    password_hash = db.Column(db.String(400))
     channel_head = db.Column(db.LargeBinary)
     # Самореферентное отношение между базой данных пользователей для реализации подписки
     followed = db.relationship('User', secondary=subscribers_channel, primaryjoin=(subscribers_channel.c.follower_id == id),
@@ -72,6 +73,7 @@ class AttachedFile(db.Model):
     file_path = db.Column(db.String(400))
     lesson_id = db.Column(db.Integer, db.ForeignKey('single_lesson.id'))  # Связь один-ко-многим с таблицей SingleLesson
     lesson = db.relationship('SingleLesson', backref=db.backref('attached_files', lazy=True))
+    filename = db.Column(db.String(120))
 
 
 # Видео в уроке
@@ -89,19 +91,20 @@ class SingleLesson(db.Model):
     video_id = db.Column(db.Integer, db.ForeignKey('video_lesson.id'))
     video = db.relationship('VideoLesson', backref=db.backref('lesson', uselist=False))  # Связь один-к-одному с таблицей VideoLesson
     about_lesson = db.Column(db.String(3000))
-    extra_material = db.Column(db.String(5000))
+    extra_material = db.Column(db.String(20000))
     views = db.Column(db.Integer, default=0)
     meta_tags = db.relationship('MetaTagsLesson', secondary=meta_tags_lesson_table, backref=db.backref('lesson', lazy='dynamic'))  # Связь многие-ко-многим с таблицей
     # MetaTagsLesson
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Связь один-ко-многим с таблицей User
     user = db.relationship('User', backref=db.backref('lessons', lazy=True))
+    archive_attached_files_path = db.Column(db.String(400))
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 # Интересы пользователя
 class Interests(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(120))
+    text = db.Column(db.String(256))
 
     def __repr__(self):
         return '<Interest {}>'.format(self.text)
@@ -110,7 +113,7 @@ class Interests(db.Model):
 # Мета-теги для канала пользователя
 class MetaTags(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(120))
+    text = db.Column(db.String(256))
 
     def __repr__(self):
         return '<MetaTag {}>'.format(self.text)

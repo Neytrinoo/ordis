@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block links%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/lesson_page_style.css')}}">
+{% endblock %}
+
+{% block content %}
+<video class="lesson_video" controls="controls" poster="{{url_for('lesson_preview', id=lesson.id)}}">
+    <source src="{{ url_for('static', filename=lesson.video.file_path)}}">
+    <a href="video/duel.mp4">Скачайте видео</a>.
+</video>
+<div class="about_channel">
+    <a class="user_avatar_channel" href="{{url_for('channel_main', user_id=lesson.user_id)}}"
+       style="background: url({{url_for('avatar', id=lesson.user_id)}}) no-repeat; background-size:100%;"></a>
+    <a href="{{url_for('channel_main', user_id=lesson.user_id)}}" class="channel_name">{{lesson.user.channel_name}}</a>
+
+    {% if not current_user.is_following(lesson.user) %}
+    <a href="{{url_for('subscribe', username=lesson.user.username, next=request.path)}}" class="subscribe">Подписаться</a>
+    {% else %}
+    <a href="{{url_for('unsubscribe', username=lesson.user.username, next=request.path)}}" class="subscribe">Отписаться</a>
+    {% endif %}
+    <p class="count_subscribers">{{lesson.user.followers.count()}}</p>
+</div>
+<p class="about_lesson_title">Описание урока</p>
+<div class="about_lesson">
+    <p class="about_lesson_text">{{lesson.about_lesson}}</p>
+</div>
+<div class="lesson_name">
+    <p class="lesson_name_text">{{lesson.lesson_name}}</p>
+    <div class="views">
+        <div class="icon_view"></div>
+        <p class="views_text">{{lesson.views}} {{views}}</p>
+    </div>
+</div>
+<div class="attached_files">
+    <a class="btn btn-primary change_head_btn attached_files_text" data-toggle="modal" data-target="#exampleModal">
+        {{filenames}}
+    </a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Скачать файлы</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    {% for file in lesson.attached_files%}
+                    <a href="{{url_for('static', filename=file.file_path)}}" download="" class="file_download">{{file.filename}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <a href="{{url_for('static', filename=lesson.archive_attached_files_path)}}" class="download_files" download="">Скачать архив с файлами</a>
+</div>
+<p class="extra_materials_title">Дополнительные материалы</p>
+<div class="extra_materials">
+    <p class="extra_materials_text">    {{lesson.extra_material}}</p>
+</div>
+{% endblock %}

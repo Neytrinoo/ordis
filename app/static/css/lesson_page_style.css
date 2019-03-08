@@ -1,0 +1,287 @@
+
+.lesson_video {
+    width: 1200px;
+    height: 675px;
+    margin-left: 73px;
+    margin-top: 33px;
+    float: left;
+}
+
+.about_channel {
+    width: 611px;
+    height: 74px;
+    border-radius: 10px;
+    float: left;
+    background-color: #fff;
+    margin-left: 14px;
+    margin-top: 33px;
+}
+
+.content {
+    height: 100%;
+    overflow: auto;
+}
+
+.user_avatar_channel {
+    display: block;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    margin-left: 6px;
+    margin-top: 10px;
+    float: left;
+}
+
+.channel_name {
+    float: left;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+
+.channel_name:hover {
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #0090ff;
+}
+
+.subscribe {
+    display: block;
+    float: right;
+    margin-right: 8px;
+    background-color: #0090ff;
+    height: 30px;
+    width: 136px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.subscribe:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.count_subscribers {
+    width: auto;
+    float: right;
+    display: block;
+    background-color: #00aeff;
+    height: 25px;
+    color: white;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 24px;
+    margin-right: 5px;
+}
+
+.about_lesson_title {
+    float: left;
+    font-size: 24px;
+    color: #0090ff;
+    margin-left: 14px;
+    margin-top: 20px;
+}
+
+.about_lesson {
+    float: left;
+    width: 608px;
+    height: 540px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 16px;
+    margin-top: 5px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: auto;
+}
+
+.about_lesson_text {
+    font-size: 18px;
+    color: black;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    text-align: justify;
+}
+
+.lesson_name {
+    clear: both;
+    width: 1200px;
+    height: 73px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 72px;
+    margin-top: 10px;
+    padding-top: 20px;
+    float: left;
+
+}
+
+.lesson_name_text {
+    width: 1000px;
+    font-size: 18px;
+    margin-left: 10px;
+    color: black;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -ms-line-clamp: 1;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    float: left;
+}
+
+.icon_view {
+    background: url('/static/img/views_blue_icon.png') no-repeat;
+    width: 23px;
+    height: 12px;
+    float: left;
+}
+
+.views_text {
+    float: left;
+    font-size: 14px;
+    color: #969595;
+    margin-top: -5px;
+    margin-left: 6px;
+}
+
+.views {
+    margin-top: 10px;
+}
+
+.attached_files {
+    width: 608px;
+    height: 73px;
+    border-radius: 10px;
+    background-color: #fff;
+    float: left;
+    margin-left: 16px;
+    margin-top: 11px;
+}
+
+.attached_files_text {
+    width: 386px;
+    font-size: 14px;
+    margin-left: 15px;
+    margin-top: 20px;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -ms-line-clamp: 1;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    float: left;
+    color: #969595 !important;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+}
+
+.attached_files_text:hover {
+    border-bottom: 1px solid #969595 !important;
+}
+
+.download_files {
+    display: block;
+    float: right;
+    background-color: #0090ff;
+    height: 36px;
+    width: 203px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 19px;
+    padding-top: 5px;
+    text-decoration: none;
+}
+
+.download_files:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.file_download {
+    margin-bottom: 20px;
+    float: left;
+    clear: both;
+}
+
+.close_window {
+    clear: both !important;
+}
+
+.extra_materials_title {
+    font-size: 24px;
+    color: #0090ff;
+    clear: both;
+    float: left;
+    margin-left: 41%;
+    margin-top: 63px;
+}
+
+.extra_materials {
+    background-color: #fff;
+    width: 1010px;
+    height: auto;
+    margin-left: 455px;
+    clear: both;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: auto;
+}
+
+.extra_materials_text {
+    font-size: 18px;
+    margin-top: 10px;
+    color: black;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    float: left;
+    text-align: justify;
+}
