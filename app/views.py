@@ -104,6 +104,8 @@ def add_lesson():
         video = VideoLesson(file_path=video_path, duration=res)
         lesson = SingleLesson(lesson_name=form.lesson_name.data, preview=preview, about_lesson=form.about_lesson.data, extra_material=form.extra_material.data,
                               video=video)
+        clip.reader.close()
+        clip.audio.reader.close_proc()
 
         # Форматируем и добавляем мета-теги
         meta_tags = form.meta_tags.data.split(',')
@@ -302,7 +304,11 @@ def sign_in():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        file = request.files['avatar'].read()
+        if form.avatar.data:
+            file = request.files['avatar'].read()
+        else:
+            file = open(join(dirname(realpath(__file__)), 'static/img/user_default_avatar.png'), 'rb').read()
+
         user = User(username=form.username.data, channel_name=form.channel_name.data,
                     avatar=file, email=form.email.data, birthday=form.birthday.data,
                     about_channel=form.about_channel.data)

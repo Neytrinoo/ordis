@@ -14,7 +14,7 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
     username = StringField('Имя пользователя', validators=[DataRequired()])
     channel_name = StringField('Название канала', validators=[DataRequired()])
-    avatar = FileField('Выберите аватар(50x50)', validators=[DataRequired()])
+    avatar = FileField('Выберите аватар(50x50)')
     email = StringField('E-mail', validators=[DataRequired(), Email()])
     birthday = DateField('Дата рождения', format='%d.%m.%Y', validators=[Optional()])
     interests = StringField('Интересы', validators=[DataRequired()])

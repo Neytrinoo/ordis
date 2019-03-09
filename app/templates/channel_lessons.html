@@ -4,12 +4,14 @@
 {% endblock %}
 
 {% block channel_content %}
-<p class="channel_content_title">Популярные уроки</p>
+<p class="channel_content_title">Все уроки</p>
 <div class="popular_lessons_group">
     {% for i in range(lessons|length)%}
-    <div class="lessons_column">
+    {% if i % 5 == 0%}
+    <div class="lessons_column right_none">
         <div class="block_lesson">
-            <a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="preview" style="background: url({{url_for('lesson_preview', id=lessons[i].id)}}) no-repeat; background-size:100%;"></a>
+            <a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="preview"
+               style="background: url({{url_for('lesson_preview', id=lessons[i].id)}}) no-repeat; background-size:100%;"></a>
             <div class="lesson_name_block"><a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="lesson_name">{{lessons[i].lesson_name}}</a>
             </div>
             <div class="time">
@@ -23,6 +25,25 @@
             <p class="date_added">{{dates[i]}}</p>
         </div>
     </div>
+    {% else%}
+    <div class="lessons_column">
+        <div class="block_lesson">
+            <a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="preview"
+               style="background: url({{url_for('lesson_preview', id=lessons[i].id)}}) no-repeat; background-size:100%;"></a>
+            <div class="lesson_name_block"><a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="lesson_name">{{lessons[i].lesson_name}}</a>
+            </div>
+            <div class="time">
+                <div class="icon_time"></div>
+                <p class="duration">{{lessons[i].video.duration}}</p>
+            </div>
+            <div class="views">
+                <div class="icon_views"></div>
+                <p class="views_text">{{lessons[i].views}} {{views[i]}}</p>
+            </div>
+            <p class="date_added">{{dates[i]}}</p>
+        </div>
+    </div>
+    {% endif %}
     {% endfor %}
 </div>
 <style>
