@@ -48,9 +48,9 @@
     <div class="user_avatar"></div>
     <p class="channel_name">{{channel_name}}</p>
     <div class="page_select">
-        <a href="" id="main_page_link">Главная</a>
+        <a href="{{url_for('channel_main', user_id=user.id)}}" id="main_page_link">Главная</a>
         <a href="" id="courses_link">Курсы</a>
-        <a href="" id="lessons_link">Уроки</a>
+        <a href="{{url_for('channel_lessons', user_id=user.id)}}" id="lessons_link">Уроки</a>
         <a href="" id="about_channel_link">О канале</a>
     </div>
     {% if not current_user.is_following(user) %}

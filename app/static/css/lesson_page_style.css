@@ -285,3 +285,189 @@ p {
     float: left;
     text-align: justify;
 }
+
+#stars label {
+    background: url('/static/img/no_active_rating.png') no-repeat;
+    float: left;
+    display: block;
+    width: 19px;
+    height: 19px;
+}
+
+.rating_block input[type="radio"] {
+    display: none;
+}
+
+#stars li {
+    list-style-type: none;
+    float: left;
+    margin-right: 5px;
+}
+
+#stars label:hover,
+#stars label:hover ~ label,
+#stars input:checked ~ label {
+    background: url('/static/img/active_rating.png') no-repeat;
+    cursor: pointer;
+}
+
+.comment {
+    width: 1400px;
+    height: 128px;
+    border-radius: 10px;
+    margin-left: 74px;
+    float: left;
+    clear: both;
+}
+
+.comment_title {
+    font-size: 24px;
+    color: #0090ff;
+    margin-left: 56px;
+    float: left;
+    margin-top: 89px;
+}
+
+#stars {
+    margin-left: -25px;
+}
+
+.stars_block {
+    width: 265px;
+    height: 99px;
+    float: left;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 19px;
+    padding-top: 40px;
+}
+
+.comment_submit {
+    background: transparent url("/static/img/send_comment.png");
+    text-indent: -1000em;
+    width: 45px;
+    height: 57px;
+    border: none;
+    margin-left: 50px;
+    float: left;
+    margin-top: 21px;
+}
+
+.comment_submit:hover {
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+.rating_title {
+    font-size: 24px;
+    color: #0090ff;
+    margin-left: 1493px;
+    margin-top: 90px;
+    position: absolute;
+    float: left;
+}
+
+.comments_count {
+    float: left;
+    font-size: 18px;
+    color: #969595;
+    margin-top: 96px;
+    margin-left: 15px;
+}
+.all_users_comment {
+    margin-top: 79px;
+    float: left;
+}
+.user_comments {
+    margin-bottom: 29px;
+    margin-left: 74px;
+    float: left;
+}
+
+.user_comment_block {
+    width: 1400px;
+    height: 100px;
+    overflow: auto;
+    background-color: #fff;
+    clear: both;
+    border-radius: 10px;
+    float: left;
+}
+
+.user_block {
+    margin-top: 17px;
+    float: left;
+}
+
+.comment_user_avatar {
+    margin-left: 36px;
+    display: block;
+    width: 50px;
+    height: 50px;
+}
+
+.link_username {
+    font-size: 14px;
+    width: 130px;
+    margin-top: -10px;
+    text-align: center;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -ms-line-clamp: 1;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    float: left;
+    color: #969595 !important;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+}
+.comment_block {
+    font-size: 14px;
+    margin-top: 10px;
+    color: black;
+    float: left;
+    width: 1200px;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    float: left;
+    text-align: justify;
+}
+.user_rating {
+    width: 265px;
+    height: 99px;
+    background-color: #fff;
+    float: left;
+    border-radius: 10px;
+    margin-left: 19px;
+}
+.user_rating ul li{
+    display: block;
+    width: 19px;
+    height: 19px;
+    list-style-type: none;
+    float: left;
+    margin-right: 5px;
+}
+.active_rating_block {
+    background: url("/static/img/active_rating.png");
+}
+.no_active_rating_block {
+    background: url("/static/img/no_active_rating.png");
+}
+.user_rating ul {
+    margin-left: -25px;
+    margin-top: 40px;
+}

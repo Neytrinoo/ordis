@@ -98,6 +98,8 @@ class SingleLesson(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Связь один-ко-многим с таблицей User
     user = db.relationship('User', backref=db.backref('lessons', lazy=True))
     archive_attached_files_path = db.Column(db.String(400))
+    rating = db.Column(db.Float(1), default=10.0)
+    rating_sum = db.Column(db.Integer, default=0)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
 
@@ -117,6 +119,16 @@ class MetaTags(db.Model):
 
     def __repr__(self):
         return '<MetaTag {}>'.format(self.text)
+
+
+class LessonComment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(3000))
+    rating = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Связь один-ко-многим с таблицей User
+    user = db.relationship('User', backref=db.backref('comments', lazy=True))
+    lesson_id = db.Column(db.Integer, db.ForeignKey('single_lesson.id'))
+    lesson = db.relationship('SingleLesson', backref=db.backref('comments', lazy=True))
 
 
 @login.user_loader

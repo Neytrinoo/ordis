@@ -2,47 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d42938d2-2366-4150-94c7-14dacfa6ba16" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/static/css/lesson_page_style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/lesson_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/channel_lessons_style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/channel_lessons.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/channel_main_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/channel_main_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_1_1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_1_2.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_2_1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_2_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_2_2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_2_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_2_3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_2_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_3_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_3_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_3_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_4_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_4_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_6_1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user1_6_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user2_5_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user2_5_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/attached_files/user2_5_3.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/videos/user1_1.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/videos/user1_2.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/videos/user1_3.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/videos/user1_4.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/videos/user1_5.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/data/videos/user2_1.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/lesson_page_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/lesson_page_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/channel.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/channel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/channel_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/channel_main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/lesson_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/lesson_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/07f45500779f_.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/a6114ff69c5d_.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/d8dd5daa7066_.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/ef62f14a31e6_.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/Страница урока.psd" beforeDir="false" afterPath="$PROJECT_DIR$/design/Страница урока.psd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,11 +22,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/flask_project$test.coverage" NAME="test Coverage Results" MODIFIED="1552044843800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flask_project$test.coverage" NAME="test Coverage Results" MODIFIED="1552133330997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/flask_project$tests.coverage" NAME="tests Coverage Results" MODIFIED="1552048004102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/flask_project$ordis__1_.coverage" NAME="ordis (1) Coverage Results" MODIFIED="1551807097941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../копия flask_project" />
     <SUITE FILE_PATH="coverage/flask_project$Unittests_in_tests_py.coverage" NAME="Unittests in tests.py Coverage Results" MODIFIED="1552046193077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
-    <SUITE FILE_PATH="coverage/flask_project$ordis.coverage" NAME="ordis Coverage Results" MODIFIED="1552048606756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flask_project$ordis.coverage" NAME="ordis Coverage Results" MODIFIED="1552133823471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -73,13 +44,123 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/tests.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="65" lean-forward="true" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+            <state relative-caret-position="671">
+              <caret line="130" column="71" selection-start-line="130" selection-start-column="71" selection-end-line="130" selection-end-column="71" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#0#30#0" expanded="true" />
+                <marker date="1552133003931" expanded="true" signature="1424:1429" ph="..." />
+                <marker date="1552133003931" expanded="true" signature="4985:4990" ph="..." />
+                <marker date="1552133003931" expanded="true" signature="5034:5039" ph="..." />
+                <marker date="1552133003931" expanded="true" signature="5209:5214" ph="..." />
+                <marker date="1552133003931" expanded="true" signature="5904:5909" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="252" column="14" selection-start-line="252" selection-start-column="14" selection-end-line="252" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+                <marker date="1552137854774" expanded="true" signature="1139:1144" ph="..." />
+                <marker date="1552137854774" expanded="true" signature="12266:14274" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/channel_main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/channel.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="52" column="82" selection-start-line="52" selection-start-column="70" selection-end-line="52" selection-end-column="82" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/channel_lessons.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="75" selection-start-line="2" selection-start-column="75" selection-end-line="2" selection-end-column="75" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/static/css/channel_lessons_style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="334">
+              <caret line="114" column="1" selection-start-line="114" selection-start-column="1" selection-end-line="114" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/static/css/channel_main_style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="123" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/lesson_page.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="85" column="29" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="29" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#5;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/static/css/lesson_page_style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="376" column="13" selection-start-line="376" selection-start-column="13" selection-end-line="376" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="756">
+              <caret line="94" column="77" selection-start-line="94" selection-start-column="77" selection-end-line="94" selection-end-column="77" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+                <marker date="1552134315676" expanded="true" signature="327:332" ph="..." />
+                <marker date="1552134315676" expanded="true" signature="591:1362" ph="..." />
               </folding>
             </state>
           </provider>
@@ -121,14 +202,16 @@
         <option value="$PROJECT_DIR$/app/static/css/channel_style.css" />
         <option value="$PROJECT_DIR$/app/static/css/channel_main_style.css" />
         <option value="$PROJECT_DIR$/app/templates/channel_main.html" />
-        <option value="$PROJECT_DIR$/app/templates/channel.html" />
-        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/app/tests.py" />
         <option value="$PROJECT_DIR$/app/models.py" />
+        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/app/forms.py" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/templates/lesson_page.html" />
         <option value="$PROJECT_DIR$/app/static/css/lesson_page_style.css" />
-        <option value="$PROJECT_DIR$/app/tests.py" />
+        <option value="$PROJECT_DIR$/app/templates/channel_lessons.html" />
+        <option value="$PROJECT_DIR$/app/templates/channel.html" />
+        <option value="$PROJECT_DIR$/app/static/css/channel_lessons_style.css" />
+        <option value="$PROJECT_DIR$/app/views.py" />
       </list>
     </option>
   </component>
@@ -144,7 +227,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -168,18 +250,25 @@
               <item name="flask_project" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flask_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flask_project" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../microblog" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -203,7 +292,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ordis">
+  <component name="RunManager" selected="Python.test">
     <configuration name="ordis (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="flask_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -311,15 +400,15 @@
       <item itemvalue="Python.ordis" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.ordis (1)" />
-      <item itemvalue="Python tests.Unittests in tests.py" />
       <item itemvalue="Python.tests" />
+      <item itemvalue="Python tests.Unittests in tests.py" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.ordis" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.tests" />
         <item itemvalue="Python tests.Unittests in tests.py" />
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.ordis (1)" />
       </list>
     </recent_temporary>
@@ -352,7 +441,8 @@
       <workItem from="1551886871213" duration="6112000" />
       <workItem from="1551897819048" duration="3043000" />
       <workItem from="1551964264876" duration="7300000" />
-      <workItem from="1552033189192" duration="16376000" />
+      <workItem from="1552033189192" duration="16872000" />
+      <workItem from="1552124772156" duration="12730000" />
     </task>
     <servers />
   </component>
@@ -380,13 +470,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85487000" />
+    <option name="totallyTimeSpent" value="98713000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.23773988" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.24040511" />
       <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" weight="0.2707889" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -409,12 +499,12 @@
       <window_info anchor="right" id="Database" order="4" weight="0.32995737" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.26012793" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.24040511" />
       <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" weight="0.2707889" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -450,30 +540,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/user_agreement.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="64" selection-start-line="6" selection-start-column="64" selection-end-line="6" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/add_lesson.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="50" column="72" selection-start-line="50" selection-start-column="72" selection-end-line="50" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/werkzeug/wrappers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-218">
@@ -489,31 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/css/add_lesson_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/css/register.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" column="6" selection-start-line="72" selection-start-column="4" selection-end-line="76" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="74" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="74" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#p#9;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#p#10;n#form#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../копия flask_project/ordis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -521,31 +562,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/login.html">
+    <entry file="file://$PROJECT_DIR$/app/static/css/add_lesson_style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/css/login_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="70" selection-start-line="48" selection-start-column="70" selection-end-line="48" selection-end-column="70" />
+        <state relative-caret-position="-261">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/static/css/base_style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
+        <state relative-caret-position="62">
           <caret line="41" column="56" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/css/channel_style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1043">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/css/login_style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/css/register.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11">
+          <caret line="50" column="18" lean-forward="true" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/add_lesson.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="50" column="72" selection-start-line="50" selection-start-column="72" selection-end-line="50" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-516">
+          <caret line="48" column="70" selection-start-line="48" selection-start-column="70" selection-end-line="48" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -556,119 +618,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/css/channel_main_style.css">
+    <entry file="file://$PROJECT_DIR$/app/templates/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="89" column="4" selection-start-line="89" selection-start-column="4" selection-end-line="93" selection-end-column="21" />
+        <state relative-caret-position="-873">
+          <caret line="11" column="74" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="74" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#p#9;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#10;n#form#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/css/channel_style.css">
+    <entry file="file://$PROJECT_DIR$/app/templates/user_agreement.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        <state relative-caret-position="102">
+          <caret line="6" column="64" selection-start-line="6" selection-start-column="64" selection-end-line="6" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ordis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
+    <entry file="file://$PROJECT_DIR$/app/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2318">
-          <caret line="130" column="16" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
+        <state relative-caret-position="255">
+          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <marker date="1552046915982" expanded="true" signature="1105:1110" ph="..." />
-            <marker date="1552046915982" expanded="true" signature="9957:11965" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/lesson_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/css/lesson_page_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="123" column="12" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/channel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="93" column="18" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <marker date="1552045640242" expanded="true" signature="1424:1429" ph="..." />
-            <marker date="1552045640242" expanded="true" signature="4885:4890" ph="..." />
-            <marker date="1552045640242" expanded="true" signature="4934:4939" ph="..." />
-            <marker date="1552045640242" expanded="true" signature="5109:5114" ph="..." />
-            <marker date="1552045640242" expanded="true" signature="5308:5313" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <marker date="1552045898416" expanded="true" signature="306:311" ph="..." />
-            <marker date="1552045898416" expanded="true" signature="570:1341" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/channel_main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="510">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
           <folding>
             <element signature="e#0#82#0" expanded="true" />
+            <marker date="1552133329407" expanded="true" signature="895:1063" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/tests.py">
+    <entry file="file://$PROJECT_DIR$/app/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="65" lean-forward="true" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+        <state relative-caret-position="756">
+          <caret line="94" column="77" selection-start-line="94" selection-start-column="77" selection-end-line="94" selection-end-column="77" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
+            <marker date="1552134315676" expanded="true" signature="327:332" ph="..." />
+            <marker date="1552134315676" expanded="true" signature="591:1362" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="671">
+          <caret line="130" column="71" selection-start-line="130" selection-start-column="71" selection-end-line="130" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+            <marker date="1552133003931" expanded="true" signature="1424:1429" ph="..." />
+            <marker date="1552133003931" expanded="true" signature="4985:4990" ph="..." />
+            <marker date="1552133003931" expanded="true" signature="5034:5039" ph="..." />
+            <marker date="1552133003931" expanded="true" signature="5209:5214" ph="..." />
+            <marker date="1552133003931" expanded="true" signature="5904:5909" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/lesson_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="85" column="29" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#5;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/css/lesson_page_style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="376" column="13" selection-start-line="376" selection-start-column="13" selection-end-line="376" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/css/channel_main_style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="123" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/channel_main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/css/channel_lessons_style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="114" column="1" selection-start-line="114" selection-start-column="1" selection-end-line="114" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/channel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="52" column="82" selection-start-line="52" selection-start-column="70" selection-end-line="52" selection-end-column="82" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/channel_lessons.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="75" selection-start-line="2" selection-start-column="75" selection-end-line="2" selection-end-column="75" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="252" column="14" selection-start-line="252" selection-start-column="14" selection-end-line="252" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <marker date="1552137854774" expanded="true" signature="1139:1144" ph="..." />
+            <marker date="1552137854774" expanded="true" signature="12266:14274" ph="..." />
           </folding>
         </state>
       </provider>

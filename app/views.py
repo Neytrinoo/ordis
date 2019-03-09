@@ -1,8 +1,8 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm, AddLessonForm, ChannelHeadForm
-from app.models import User, Interests, MetaTags, SingleLesson, VideoLesson, AttachedFile, MetaTagsLesson
+from app.forms import LoginForm, RegistrationForm, AddLessonForm, ChannelHeadForm, CommentLessonForm
+from app.models import User, Interests, MetaTags, SingleLesson, VideoLesson, AttachedFile, MetaTagsLesson, LessonComment
 from werkzeug.urls import url_parse
 from moviepy.editor import VideoFileClip
 from datetime import datetime
@@ -228,8 +228,47 @@ def channel_main(user_id):
                            lessons=lessons[:5], views=views_name, dates=dates)
 
 
+@app.route('/channel/<int:user_id>/lessons', methods=['GET', 'POST'])
+def channel_lessons(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if user is None:
+        flash('Такого канала не существует')
+        return redirect(url_for('index'))
+    is_channel_head = True
+    if user.channel_head is None:
+        print(user.channel_head)
+        is_channel_head = False
+    form = ChannelHeadForm()
+    channel_name = user.channel_name
+    # Обработка изменения шапки канала
+    if form.validate_on_submit():
+        if form.image.data:
+            file = request.files['image'].read()
+            user.channel_head = file
+            db.session.commit()
+        return redirect(url_for('channel_main', user_id=user_id))
+    lessons = user.lessons
+    lessons = list(reversed(sorted(lessons, key=lambda x: x.views)))
+    views_name = []
+    dates = []
+    # Добавляем в views_name правильное склонение числа просмотров, а в dates - правильное отображение даты.
+    # Если урок добавлен в нынешний день, то время, если нет - то дата
+    for lesson in lessons:
+        res = correct_form_views(lesson.views)
+        views_name.append(res)
+        now = datetime.utcnow()
+        if lesson.date_added.day == now.day:
+            date = lesson.date_added.strftime('%H:%M')
+        else:
+            date = lesson.date_added.strftime('%d.%m.%Y')
+        dates.append(date)
+
+    return render_template('channel_lessons.html', title=user.channel_name + ' - Ordis', user=user, is_channel_head=is_channel_head, form=form, channel_name=channel_name,
+                           lessons=lessons, views=views_name, dates=dates)
+
+
 # Страница урока
-@app.route('/lesson/<int:lesson_id>')
+@app.route('/lesson/<int:lesson_id>', methods=['GET', 'POST'])
 def lesson_page(lesson_id):
     lesson = SingleLesson.query.filter_by(id=lesson_id).first()
     if lesson is None:
@@ -239,7 +278,21 @@ def lesson_page(lesson_id):
     db.session.commit()
     views = correct_form_views(lesson.views)
     filenames = ', '.join([file.filename for file in lesson.attached_files])
-    return render_template('lesson_page.html', title=lesson.lesson_name + ' - Ordis', lesson=lesson, views=views, filenames=filenames)
+    form = CommentLessonForm()
+    if form.validate_on_submit():
+        text = form.comment.data
+        stars = int(form.stars.data)
+        lesson.rating_sum += stars
+        comment = LessonComment(text=text, rating=stars)
+        lesson.rating = lesson.rating_sum / (len(lesson.comments) + 1)
+        lesson.comments.append(comment)
+        current_user.comments.append(comment)
+        db.session.commit()
+        return redirect(url_for('lesson_page', lesson_id=lesson.id))
+    count_comments = len(lesson.comments)
+    print(lesson.rating)
+    return render_template('lesson_page.html', title=lesson.lesson_name + ' - Ordis', lesson=lesson, views=views, filenames=filenames, form=form,
+                           count_comments=count_comments)
 
 
 # Регистрация
@@ -289,6 +342,7 @@ def sign_in():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()  # Разлогиниваем пользователя
     return redirect(url_for('index'))

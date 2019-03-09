@@ -1,0 +1,124 @@
+.channel_content_title {
+    font-size: 24px;
+    margin-left: 280px;
+    margin-top: 19px;
+    color: #0090ff;
+}
+
+.block_lesson {
+    height: 290px;
+    width: 215px;
+    background-color: #fff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.preview {
+    display: block;
+    height: 145px;
+    width: inherit;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-left: -10px;
+}
+
+.lesson_name {
+    font-size: 14px;
+    color: black;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -ms-line-clamp: 2;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    line-height: 19px;
+}
+
+.lesson_name_block {
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.lesson_name:hover {
+    color: black;
+    border-bottom: 1px solid #0090ff;
+    text-decoration: none;
+}
+
+.icon_time {
+    margin-top: 11px;
+    width: 15px;
+    float: left;
+    height: 15px;
+    background-image: url('/static/img/time_icon.png');
+    margin-bottom: 13px;
+}
+
+
+p {
+    margin-bottom: 0px !important;
+}
+
+.duration {
+    float: left;
+    font-size: 14px;
+    color: #969595;
+    margin-top: 7px;
+    margin-left: 6px;
+}
+
+.views {
+    clear: both;
+}
+
+.icon_views {
+    width: 23px;
+    height: 12px;
+    float: left;
+    background: url('/static/img/views_icon.png') no-repeat;
+}
+
+.views_text {
+    float: left;
+    font-size: 14px;
+    color: #969595;
+    margin-top: -4px;
+    margin-left: 6px;
+}
+
+.date_added {
+    font-size: 14px;
+    color: #969595;
+    margin-left: 130px;
+    margin-top: 35px;
+}
+
+.lessons_column {
+    float: left;
+    margin-right: 28px;
+}
+
+.popular_lessons_group {
+    width: inherit;
+}
+
+.content {
+   overflow: auto;
+}
+
+#lessons_link {
+    border-bottom: 1px solid #0090ff;
+}
+
+.popular_lessons_group {
+    margin-left: 366px;
+    margin-top: 30px;
+}

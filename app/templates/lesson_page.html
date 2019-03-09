@@ -64,6 +64,52 @@
 </div>
 <p class="extra_materials_title">Дополнительные материалы</p>
 <div class="extra_materials">
-    <p class="extra_materials_text">    {{lesson.extra_material}}</p>
+    <p class="extra_materials_text"> {{lesson.extra_material}}</p>
 </div>
+<p class="comment_title">Комментарии</p>
+<p class="comments_count">{{count_comments}}</p>
+<p class="rating_title">Рейтинг</p>
+<form action="" method="post" novalidate class="rating_block">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.comment(class='comment') }}
+        {% for error in form.comment.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+
+    <div class="stars_block">
+        {{ form.stars(name='reviewStars') }}
+    </div>
+    {{ form.submit(class='comment_submit') }}
+</form>
+<div class="all_users_comment">
+    {% for i in range(count_comments)%}
+    <div class="user_comments">
+
+        <div class="user_comment_block">
+            <div class="user_block">
+                <a class="comment_user_avatar" href="{{url_for('channel_main', user_id=lesson.comments[i].user_id)}}"
+                   style="background: url({{url_for('avatar', id=lesson.comments[i].user_id)}}) no-repeat; background-size:100%;"></a>
+                <a href="{{url_for('channel_main', user_id=lesson.comments[i].user_id)}}" class="link_username">{{lesson.comments[i].user.username}}</a>
+            </div>
+            <p class="comment_block">
+                {{lesson.comments[i].text}}
+            </p>
+        </div>
+
+        <div class="user_rating">
+            <ul>
+                {%for i in range(lesson.comments[i].rating)%}
+                <li class="active_rating_block"></li>
+                {%endfor%}
+                {%for i in range(10-lesson.comments[i].rating)%}
+                <li class="no_active_rating_block"></li>
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}

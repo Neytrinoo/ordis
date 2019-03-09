@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, DateField, TextAreaField, MultipleFileField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, DateField, TextAreaField, MultipleFileField, RadioField, widgets
 from wtforms.validators import DataRequired, Email, EqualTo, Optional, ValidationError
 from app.models import User
 
@@ -82,3 +82,14 @@ class AddLessonForm(FlaskForm):
 class ChannelHeadForm(FlaskForm):
     image = FileField('Картинка', render_kw={'accept': 'image/*'})
     submit = SubmitField('Изменить оформление канала')
+
+
+class CommentLessonForm(FlaskForm):
+    comment = TextAreaField('Комментарии', validators=[DataRequired('')])
+    stars = RadioField('Рейтинг', choices=[('1', ''), ('2', ''), ('3', ''), ('4', ''), ('5', ''),
+                                           ('6', ''), ('7', ''), ('8', ''), ('9', ''), ('10', '')], validators=[DataRequired()])
+    submit = SubmitField()
+
+    def validate_comment(self, comment):
+        if len(comment.data) >= 3000:
+            raise ValidationError('Длина комментария превысела 3000 символов.')
