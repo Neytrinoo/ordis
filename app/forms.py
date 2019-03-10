@@ -93,3 +93,8 @@ class CommentLessonForm(FlaskForm):
     def validate_comment(self, comment):
         if len(comment.data) >= 3000:
             raise ValidationError('Длина комментария превысела 3000 символов.')
+
+
+class SearchForm(FlaskForm):
+    search = StringField()
+    submit = SubmitField()

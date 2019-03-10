@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/search_lesson_style.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="dropdown search_format">
+    <button class="btn btn-secondary dropdown-toggle learn_button" type="button" id="dropdownMenu2"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Формат поиска
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <a class="dropdown-item" href="{{url_for('search', what_is='lessons', search_input=search)}}">Поиск по урокам</a>
+        <a class="dropdown-item" href="{{url_for('search', what_is='users', search_input=search)}}">Поиск по каналам</a>
+    </div>
+</div>
+<div class="popular_lessons_group">
+    {% include 'lesson_views.html' %}
+</div>
+<style>
+</style>
+{% endblock %}

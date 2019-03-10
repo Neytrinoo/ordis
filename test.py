@@ -6,7 +6,6 @@ from app.models import VideoLesson, SingleLesson, MetaTagsLesson, meta_tags_less
 import subprocess
 from datetime import datetime
 from zipfile import ZipFile
-
 # clip = VideoFileClip('app/static/data/videos/user1_3.mp4')
 # duration = int(clip.duration)
 # res = ''

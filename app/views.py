@@ -1,13 +1,14 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm, AddLessonForm, ChannelHeadForm, CommentLessonForm
+from app.forms import LoginForm, RegistrationForm, AddLessonForm, ChannelHeadForm, CommentLessonForm, SearchForm
 from app.models import User, Interests, MetaTags, SingleLesson, VideoLesson, AttachedFile, MetaTagsLesson, LessonComment
 from werkzeug.urls import url_parse
 from moviepy.editor import VideoFileClip
 from datetime import datetime
 from zipfile import ZipFile
 from os.path import join, dirname, realpath
+import pymorphy2
 
 VIEWS = {
     '1': 'просмотр',
@@ -179,6 +180,65 @@ def unsubscribe(username):
     return redirect(next_page)
 
 
+# Функция поиска
+@app.route('/search')
+def search():
+    morph = pymorphy2.MorphAnalyzer()
+    search_text = request.args.get('search_input')
+    copy_search_text = search_text
+    what_is = request.args.get('what_is')
+    if not search_text or url_parse(search_text).netloc != '':
+        flash('Поисковый запрос пуст')
+        return redirect(url_for('index'))
+
+    search_text = search_text.split()
+    need_tags = []
+    lesson_tags = []
+    for line in search_text:
+        search_now = morph.parse(line.lower())[0].normal_form
+        if MetaTags.query.filter_by(text=search_now).first() is not None:
+            need_tags.append(MetaTags.query.filter_by(text=search_now).first())
+        if MetaTagsLesson.query.filter_by(text=search_now).first() is not None:
+            lesson_tags.append(MetaTagsLesson.query.filter_by(text=search_now).first())
+
+    users_tags = {}
+    lesson_tags_count = {}
+    if what_is == 'lessons' or what_is is None:
+        for tag in lesson_tags:
+            for lesson in tag.lesson:
+                if lesson not in lesson_tags_count:
+                    lesson_tags_count[lesson] = 1
+                else:
+                    lesson_tags_count[lesson] += 1
+        lesson_tags_count = list(reversed(sorted(lesson_tags_count.items(), key=lambda x: x[1])))
+
+        if not lesson_tags_count:
+            flash('Ничего не найдено')
+            return redirect(url_for('index'))
+        views_name = []
+        dates = []
+        for lesson, les_id in lesson_tags_count:
+            res = correct_form_views(lesson.views)
+            views_name.append(res)
+            now = datetime.utcnow()
+            if lesson.date_added.day == now.day:
+                date = lesson.date_added.strftime('%H:%M')
+            else:
+                date = lesson.date_added.strftime('%d.%m.%Y')
+            dates.append(date)
+
+        return render_template('search_lesson.html', lessons=[x[0] for x in lesson_tags_count], views=views_name, dates=dates, search=copy_search_text)
+    for tag in need_tags:
+        for user in tag.users:
+            if user not in users_tags:
+                users_tags[user] = 1
+            else:
+                users_tags[user] += 1
+    users_tags = list(reversed(sorted(users_tags.items(), key=lambda x: x[1])))
+    print(users_tags)
+    return render_template('search_users.html', users=[x[0] for x in users_tags], search=copy_search_text)
+
+
 def correct_form_views(view):
     view = str(view)
     if view in VIEWS:
@@ -303,7 +363,6 @@ def lesson_page(lesson_id):
         db.session.commit()
         return redirect(url_for('lesson_page', lesson_id=lesson.id))
     count_comments = len(lesson.comments)
-    print(lesson.rating)
     return render_template('lesson_page.html', title=lesson.lesson_name + ' - Ordis', lesson=lesson, views=views, filenames=filenames, form=form,
                            count_comments=count_comments)
 

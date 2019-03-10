@@ -42,7 +42,9 @@ body {
     height: 39px;
     margin-left: 18px;
     margin-top: 12px;
-    background-image: url('/static/img/search_button.png');
+    text-indent: -1000em;
+    border: none;
+    background: transparent url('/static/img/search_button.png') no-repeat;
 }
 
 .login {

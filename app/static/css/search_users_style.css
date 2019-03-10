@@ -1,0 +1,108 @@
+
+
+.user_avatar {
+    display: block;
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 36px;
+    margin-top: 17px;
+}
+.user {
+    width: 1400px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 70px;
+    margin-bottom: 40px;
+    overflow: auto;
+    clear: left;
+    float: left;
+}
+.link_username {
+    font-size: 14px;
+    width: 130px;
+    margin-top: -10px;
+    text-align: center;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -ms-line-clamp: 1;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    clear: both;
+    float: left;
+    color: #969595 !important;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+}
+.about_channel_text {
+    font-size: 14px;
+    width: 1000px;
+    margin-top: -40px;
+    color: black;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    float: left;
+    text-align: justify;
+}
+.about_channel_title {
+    font-size: 16px;
+    color: #0090ff;
+    float: left;
+    margin-top: -60px;
+}
+.search_format {
+    margin-bottom: 100px;
+}
+
+.subscribe {
+    display: block;
+    float: left;
+    margin-right: 10px;
+    background-color: #0090ff;
+    height: 30px;
+    width: 136px;
+    margin-left: 10px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 30px;
+}
+
+.subscribe:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.count_subscribers {
+    width: auto;
+    float: left;
+    display: block;
+    background-color: #00aeff;
+    height: 25px;
+    color: white;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 32px;
+}

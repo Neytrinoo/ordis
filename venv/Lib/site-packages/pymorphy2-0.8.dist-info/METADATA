@@ -1,0 +1,57 @@
+Metadata-Version: 2.0
+Name: pymorphy2
+Version: 0.8
+Summary: Morphological analyzer (POS tagger + inflection engine) for Russian language.
+Home-page: https://github.com/kmike/pymorphy2/
+Author: Mikhail Korobov
+Author-email: kmike84@gmail.com
+License: MIT license
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: Russian
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Text Processing :: Linguistic
+Requires: dawg_python (>= 0.7)
+Requires: pymorphy2_dicts (>=2.4, <3.0)
+Requires: docopt (>= 0.6)
+Requires-Dist: dawg-python (>=0.7)
+Requires-Dist: pymorphy2-dicts (>=2.4,<3.0)
+Requires-Dist: docopt (>=0.6)
+Provides-Extra: fast
+Requires-Dist: DAWG (>=0.7.3); extra == 'fast'
+
+pymorphy2
+=========
+
+Morphological analyzer (POS tagger + inflection engine)
+for Russian language. License is MIT.
+
+.. image:: https://travis-ci.org/kmike/pymorphy2.png?branch=master
+    :target: https://travis-ci.org/kmike/pymorphy2
+.. image:: https://coveralls.io/repos/kmike/pymorphy2/badge.png?branch=master
+    :target: https://coveralls.io/r/kmike/pymorphy2
+
+* docs: https://pymorphy2.readthedocs.org
+* changelog: https://github.com/kmike/pymorphy2/blob/master/CHANGES.rst
+* source code: github_, bitbucket_.
+* bug tracker: https://github.com/kmike/pymorphy2/issues
+* support: https://groups.google.com/forum/?fromgroups#!forum/pymorphy
+
+.. _github: https://github.com/kmike/pymorphy2
+.. _bitbucket: https://bitbucket.org/kmike/pymorphy2
+
+

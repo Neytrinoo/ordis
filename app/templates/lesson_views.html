@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="{{url_for('static', filename='css/lesson_block_style.css')}}">
+{% for i in range(lessons|length)%}
+{% if i % 5 == 0%}
+<div class="lessons_column right_none">
+    <div class="block_lesson">
+        <a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="preview"
+           style="background: url({{url_for('lesson_preview', id=lessons[i].id)}}) no-repeat; background-size:100%;"></a>
+        <div class="lesson_name_block"><a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="lesson_name">{{lessons[i].lesson_name}}</a>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{10*lessons[i].rating}}%" aria-valuenow="{{10*lessons[i].rating}}" aria-valuemin="0"
+                 aria-valuemax="10"></div>
+        </div>
+        <div class="time">
+            <div class="icon_time"></div>
+            <p class="duration">{{lessons[i].video.duration}}</p>
+        </div>
+        <div class="views">
+            <div class="icon_views"></div>
+            <p class="views_text">{{lessons[i].views}} {{views[i]}}</p>
+        </div>
+        <p class="date_added">{{dates[i]}}</p>
+    </div>
+</div>
+{% else%}
+<div class="lessons_column">
+    <div class="block_lesson">
+        <a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="preview"
+           style="background: url({{url_for('lesson_preview', id=lessons[i].id)}}) no-repeat; background-size:100%;"></a>
+        <div class="lesson_name_block"><a href="{{url_for('lesson_page', lesson_id=lessons[i].id)}}" class="lesson_name">{{lessons[i].lesson_name}}</a>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{10*lessons[i].rating}}%" aria-valuenow="{{10*lessons[i].rating}}" aria-valuemin="0"
+                 aria-valuemax="10"></div>
+        </div>
+        <div class="time">
+            <div class="icon_time"></div>
+            <p class="duration">{{lessons[i].video.duration}}</p>
+        </div>
+        <div class="views">
+            <div class="icon_views"></div>
+            <p class="views_text">{{lessons[i].views}} {{views[i]}}</p>
+        </div>
+        <p class="date_added">{{dates[i]}}</p>
+    </div>
+</div>
+{% endif %}
+{% endfor %}

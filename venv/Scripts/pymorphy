@@ -1,0 +1,4 @@
+#!G:\SecondYearYandexLyceum\flask_project\venv\Scripts\python.exe
+import sys
+from pymorphy2 import cli
+sys.exit(cli.main())

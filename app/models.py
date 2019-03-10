@@ -85,6 +85,7 @@ class VideoLesson(db.Model):
 
 # Одиночный урок, который не входит в курс
 class SingleLesson(db.Model):
+    __searchable__ = ['about_lesson']
     id = db.Column(db.Integer, primary_key=True)
     lesson_name = db.Column(db.String(256))
     preview = db.Column(db.LargeBinary, nullable=False)

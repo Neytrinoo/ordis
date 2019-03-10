@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/search_users_style.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="dropdown search_format">
+    <button class="btn btn-secondary dropdown-toggle learn_button" type="button" id="dropdownMenu2"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Формат поиска
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <a class="dropdown-item" href="{{url_for('search', what_is='lessons', search_input=search)}}">Поиск по урокам</a>
+        <a class="dropdown-item" href="{{url_for('search', what_is='users', search_input=search)}}">Поиск по каналам</a>
+    </div>
+</div>
+<div class="users_block">
+    {% for user in users %}
+    <div class="user">
+        <a class="user_avatar" href="{{url_for('channel_main', user_id=user.id)}}"
+           style="background: url({{url_for('avatar', id=user.id)}}) no-repeat; background-size:100%;"></a>
+        <a href="{{url_for('channel_main', user_id=user.id)}}" class="link_username">{{user.username}}</a>
+        <p class="about_channel_title">О канале</p>
+        <p class="about_channel_text">{{user.about_channel}}</p>
+
+    </div>
+    {% if not current_user.is_following(user) %}
+        <a href="{{url_for('subscribe', username=user.username, next='/channel/' + user.id|string + '/main')}}" class="subscribe">Подписаться</a>
+        {% else %}
+        <a href="{{url_for('unsubscribe', username=user.username, next='/channel/' + user.id|string + '/main')}}" class="subscribe">Отписаться</a>
+        {% endif %}
+        <p class="count_subscribers">{{user.followers.count()}}</p>
+    {% endfor %}
+</div>
+<style>
+</style>
+{% endblock %}
