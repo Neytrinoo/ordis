@@ -284,15 +284,21 @@ def lesson_page(lesson_id):
     if form.validate_on_submit():
         text = form.comment.data
         stars = int(form.stars.data)
-        lesson.rating_sum += stars
         comment = LessonComment(text=text, rating=stars)
-        lesson.rating = lesson.rating_sum / (len(lesson.comments) + 1)
+        change_rating = True
+        for comment in current_user.comments:
+            if comment.lesson_id == lesson_id:
+                change_rating = False
+        # Общий рейтинг урока изменяется только в том случае, если данный пользователь оставил свой первый комментарий
+        if change_rating:
+            lesson.rating_sum += stars
+            lesson.rating = lesson.rating_sum / (len(lesson.comments) + 1)
         lesson.comments.append(comment)
         current_user.comments.append(comment)
         db.session.commit()
         return redirect(url_for('lesson_page', lesson_id=lesson.id))
-    count_comments = len(lesson.comments)
     print(lesson.rating)
+    count_comments = len(lesson.comments)
     return render_template('lesson_page.html', title=lesson.lesson_name + ' - Ordis', lesson=lesson, views=views, filenames=filenames, form=form,
                            count_comments=count_comments)
 
