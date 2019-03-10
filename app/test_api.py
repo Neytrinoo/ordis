@@ -30,8 +30,8 @@ user_put = {
 # print(delete('http://localhost:5000/api/lessons/7', json={'username': 'Neytrino', 'password': 'neytrino'}).json())
 # print(get('http://localhost:5000/api/comments/5').json())
 # print(post('http://localhost:5000/api/comments',
-#            json={'username': 'Neytrino', 'password': 'neytrino', 'text': 'Урок классный, рекомендую', 'lesson_id': '1', 'rating': '10'}).json())
-# print(delete('http://localhost:5000/api/comments/5', json={'username': 'Neytrino', 'password': 'neytrino'}).json())
+#            json={'username': 'Neytrino', 'password': 'neytrino', 'text': 'Седьмой коммент', 'lesson_id': '1', 'rating': '3'}).json())
+print(delete('http://localhost:5000/api/comments/7', json={'username': 'Neytrino', 'password': 'neytrino'}).json())
 # print(get('http://localhost:5000/api/comments/5').json())
-# print(put('http://localhost:5000/api/comments/2',
-#           json={'username': 'Neytrino', 'password': 'neytrino', 'text': 'Урок атлишный, еще раз вам говорю!', 'rating': '10'}).json())
+# print(put('http://localhost:5000/api/comments/5',
+#           json={'username': 'Neytrino', 'password': 'neytrino', 'text': 'Урок атлишный, еще раз вам говорю!', 'rating': '2'}).json())

@@ -30,6 +30,9 @@
 </div>
 <div class="lesson_name">
     <p class="lesson_name_text">{{lesson.lesson_name}}</p>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: {{10*lesson.rating}}%" aria-valuenow="{{10*lesson.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
+    </div>
     <div class="views">
         <div class="icon_view"></div>
         <p class="views_text">{{lesson.views}} {{views}}</p>

@@ -471,3 +471,6 @@ p {
     margin-left: -25px;
     margin-top: 40px;
 }
+.progress {
+    height: 10px!important;
+}

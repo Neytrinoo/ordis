@@ -316,15 +316,23 @@ class CommentApi(Resource):
         lesson = SingleLesson.query.filter_by(id=comment.lesson_id).first()
         if comment.user_id != user.id:
             return jsonify({'error': 'The user {} did not leave this comment'.format(args['username'])})
-        lesson_comments = -1
+        lesson_comments = []
         for com in user.comments:
             if com.lesson_id == comment.lesson_id:
-                lesson_comments = com
-                break
+                lesson_comments.append(com)
         # Изменяем рейтинг урока только в том случае, если это был первый комментарий пользователя
-        if lesson_comments.id == comment.id:
+        if lesson_comments[0].id == comment.id:
             lesson.rating_sum -= comment.rating
-            lesson.rating = lesson.rating_sum / (len(lesson.comments) - 1)
+            if len(lesson_comments) > 1:
+                lesson.rating_sum += lesson_comments[1].rating
+                comment.rating_influence = True
+            else:
+                lesson.rating_influence_comments -= 1
+            if len(lesson.comments) - 1 <= 0:
+                lesson.rating = 10
+                lesson.rating_sum = 0
+            else:
+                lesson.rating = lesson.rating_sum / lesson.rating_influence_comments
         db.session.delete(comment)
         db.session.commit()
         return jsonify({'success': 'OK'})
@@ -341,15 +349,10 @@ class CommentApi(Resource):
         if args['text'] is not None:
             comment.text = args['text']
         if args['rating'] is not None:
-            lesson_comments = -1
-            for com in user.comments:
-                if com.lesson_id == comment.lesson_id:
-                    lesson_comments = com
-                    break
-            if lesson_comments.id == comment.id:
+            if comment.rating_influence:
                 lesson.rating_sum -= comment.rating
                 lesson.rating_sum += float(args['rating'])
-                lesson.rating = lesson.rating_sum / (len(lesson.comments))
+                lesson.rating = lesson.rating_sum / lesson.rating_influence_comments
             comment.rating = float(args['rating'])
         db.session.commit()
         return jsonify({'success': 'OK'})
@@ -376,17 +379,22 @@ class CommentListApi(Resource):
                 return jsonify({'error': 'The rating can be integer, not float'})
             comment = LessonComment(text=args['text'], rating=float(args['rating']))
             change_rating = True
-            for comment in user.comments:
-                if comment.lesson_id == lesson.id:
+            for comment2 in user.comments:
+                if comment2.lesson_id == lesson.id:
                     change_rating = False
 
             # Общий рейтинг урока изменяется только в том случае, если данный пользователь оставил свой первый комментарий
             if change_rating:
+                lesson.rating_influence_comments += 1
                 lesson.rating_sum += float(args['rating'])
-                lesson.rating = lesson.rating_sum / (len(lesson.comments) + 1)
+                lesson.rating = lesson.rating_sum / lesson.rating_influence_comments
+                comment.rating_influence = True
+            else:
+                comment.rating_influence = False
 
             lesson.comments.append(comment)
             user.comments.append(comment)
+            db.session.add(comment)
             db.session.commit()
             return jsonify({'success': 'OK'})
         except Exception as e:

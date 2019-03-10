@@ -26,6 +26,5 @@ from zipfile import ZipFile
 # with ZipFile('app/static/data/attached_files_archives/archive.zip', 'w') as myzip:
 #     myzip.write('app/static/data/attached_files/user1_1_2.psd', arcname='asdf.psd')
 les = SingleLesson.query.filter_by(id=1).first()
-les.rating = 10
-les.rating_sum = 0
+les.rating_influence_comments= 0
 db.session.commit()

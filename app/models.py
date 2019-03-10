@@ -101,6 +101,7 @@ class SingleLesson(db.Model):
     rating = db.Column(db.Float(1), default=10.0)
     rating_sum = db.Column(db.Integer, default=0)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    rating_influence_comments = db.Column(db.Integer, default=0)
 
 
 # Интересы пользователя
@@ -129,6 +130,7 @@ class LessonComment(db.Model):
     user = db.relationship('User', backref=db.backref('comments', lazy=True))
     lesson_id = db.Column(db.Integer, db.ForeignKey('single_lesson.id'))
     lesson = db.relationship('SingleLesson', backref=db.backref('comments', lazy=True))
+    rating_influence = db.Column(db.Boolean)
 
 
 @login.user_loader
