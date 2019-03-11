@@ -53,3 +53,6 @@
     text-decoration: none;
 }
 
+#main_page_link {
+    border-bottom: 1px solid #0090ff;
+}

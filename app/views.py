@@ -9,6 +9,7 @@ from datetime import datetime
 from zipfile import ZipFile
 from os.path import join, dirname, realpath
 import pymorphy2
+from random import randint
 
 VIEWS = {
     '1': 'просмотр',
@@ -31,7 +32,50 @@ VIEWS = {
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    if current_user.is_authenticated:
+        interests = current_user.interests
+        lesson_tags = {}
+        for interest in interests:
+            if MetaTagsLesson.query.filter_by(text=interest.text).first() is not None:
+                for lesson in MetaTagsLesson.query.filter_by(text=interest.text).first().lesson:
+                    if lesson in lesson_tags:
+                        lesson_tags[lesson] += 1
+                    else:
+                        lesson_tags[lesson] = 1
+        lesson_tags = list(reversed(sorted(lesson_tags.items(), key=lambda x: x[1])))
+        views_name = []
+        dates = []
+        for lesson, les_count in lesson_tags:
+            res = correct_form_views(lesson.views)
+            views_name.append(res)
+            now = datetime.utcnow()
+            if lesson.date_added.day == now.day:
+                date = lesson.date_added.strftime('%H:%M')
+            else:
+                date = lesson.date_added.strftime('%d.%m.%Y')
+            dates.append(date)
+        lesson_tags = [x[0] for x in lesson_tags[:10]]
+    else:
+        a = len(SingleLesson.query.all())
+        lesson_tags = []
+        views_name = []
+        dates = []
+        while len(lesson_tags) < 10:
+            lesson = SingleLesson.query.filter_by(id=randint(1, a)).first()
+            if lesson is not None and lesson not in lesson_tags:
+                lesson_tags.append(lesson)
+                res = correct_form_views(lesson.views)
+                views_name.append(res)
+                now = datetime.utcnow()
+                if lesson.date_added.day == now.day:
+                    date = lesson.date_added.strftime('%H:%M')
+                else:
+                    date = lesson.date_added.strftime('%d.%m.%Y')
+                dates.append(date)
+            if a == len(lesson_tags):
+                break
+
+    return render_template('index.html', lessons=lesson_tags, views=views_name, dates=dates)
 
 
 @app.route('/login', methods=['GET', 'POST'])

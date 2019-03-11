@@ -67,6 +67,21 @@ body {
 
 .content {
     background-color: #dfe0e0;
-    height: 100%;
     overflow-x: hidden!important;
+     min-height: calc(100vh - 80px);
+}
+body {
+    height: 100%;
+}
+footer{
+    height: 100px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.footer_text {
+    float: right;
+    margin-top: 90px;
+    font-size: 16px;
+    margin-right: 20px;
 }

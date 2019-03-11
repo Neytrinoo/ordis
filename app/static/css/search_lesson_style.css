@@ -1,54 +1,8 @@
-.channel_content_title {
+.search_title {
     font-size: 24px;
     margin-left: 280px;
-    margin-top: 19px;
+    margin-top: 60px;
     color: #0090ff;
 }
 
-.block_lesson {
-    height: 290px;
-    width: 215px;
-    background-color: #fff;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    padding-left: 10px;
-}
 
-.preview {
-    display: block;
-    height: 145px;
-    width: inherit;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    margin-left: -10px;
-}
-
-.lesson_name {
-    font-size: 14px;
-    color: black;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    -ms-line-clamp: 2;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    display: -webkit-box;
-    display: box;
-    word-wrap: break-word;
-    -webkit-box-orient: vertical;
-    box-orient: vertical;
-    line-height: 19px;
-}
-
-.lesson_name_block {
-    height: 40px;
-    margin-bottom: 10px;
-}
-
-.lesson_name:hover {
-    color: black;
-    border-bottom: 1px solid #0090ff;
-    text-decoration: none;
-}

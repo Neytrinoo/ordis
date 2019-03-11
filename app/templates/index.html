@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/index_style.css')}}">{% endblock %}
 {% block title %}
 Ordis - изучи сам, научи других
 {% endblock %}
 {% block content %}
-{% if current_user.is_authenticated%}
-<h2>Привет, {{current_user.username}}. Ваш канал называется {{current_user.channel_name}}. Ваши интересы
-    {{current_user.interests}}</h2>
-{% else %}
-<h2>Привет, неизвестный пользователь. Вы можете зарегистрироваться или войти.</h2>
-{% endif %}
-<video width="400" height="300" controls="controls" poster="video/duel.jpg">
-   <source src="{{ url_for('static', filename='data/videos/user1_1.mp4')}}">
-   <a href="video/duel.mp4">Скачайте видео</a>.
-  </video>
+<p class="recommended_lessons_title">Рекомендованные уроки</p>
+<div class="recommended_lessons">
+    {% include 'lesson_views.html' %}
+</div>
 {% endblock %}
