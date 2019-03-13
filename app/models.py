@@ -59,9 +59,9 @@ class User(UserMixin, db.Model):
 
     def is_following(self, user):
         return self.followed.filter(subscribers_channel.c.followed_id == user.id).count() > 0
-    # Мета-теги для урока
 
 
+# Мета-теги для урока
 class MetaTagsLesson(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(600), nullable=False)
@@ -85,7 +85,6 @@ class VideoLesson(db.Model):
 
 # Одиночный урок, который не входит в курс
 class SingleLesson(db.Model):
-    __searchable__ = ['about_lesson']
     id = db.Column(db.Integer, primary_key=True)
     lesson_name = db.Column(db.String(256))
     preview = db.Column(db.LargeBinary, nullable=False)

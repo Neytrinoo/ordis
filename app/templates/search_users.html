@@ -20,7 +20,7 @@
     <div class="user">
         <a class="user_avatar" href="{{url_for('channel_main', user_id=user.id)}}"
            style="background: url({{url_for('avatar', id=user.id)}}) no-repeat; background-size:100%;"></a>
-        <a href="{{url_for('channel_main', user_id=user.id)}}" class="link_username">{{user.username}}</a>
+        <a href="{{url_for('channel_main', user_id=user.id)}}" class="link_username">{{user.channel_name}}</a>
         <p class="about_channel_title">О канале</p>
         <p class="about_channel_text">{{user.about_channel}}</p>
 

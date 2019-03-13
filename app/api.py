@@ -155,40 +155,43 @@ class UserListApi(Resource):
             datetime.datetime.strptime(birthday, '%d.%m.%Y')
         except ValueError:
             return jsonify({'error': 'Incorrect birthday format dd.mm.YYYY'})
-        if User.query.filter_by(username=args['username']).first() is not None:
-            return jsonify({'error': 'Such user is already register'})
-        if User.query.filter_by(email=args['email']).first() is not None:
-            return jsonify({'error': 'User with this email is already registered'})
-        file = open(join(dirname(realpath(__file__)), 'static/img/user_default_avatar.png'), 'rb').read()
-        user = User(username=args['username'], channel_name=args['channel_name'], email=args['email'], birthday=datetime.datetime.strptime(birthday, '%d.%m.%Y'),
-                    about_channel=args['about_channel'], avatar=file)
-        user.set_password(args['password'])
+        try:
+            if User.query.filter_by(username=args['username']).first() is not None:
+                return jsonify({'error': 'Such user is already register'})
+            if User.query.filter_by(email=args['email']).first() is not None:
+                return jsonify({'error': 'User with this email is already registered'})
+            file = open(join(dirname(realpath(__file__)), 'static/img/user_default_avatar.png'), 'rb').read()
+            user = User(username=args['username'], channel_name=args['channel_name'], email=args['email'], birthday=datetime.datetime.strptime(birthday, '%d.%m.%Y'),
+                        about_channel=args['about_channel'], avatar=file)
+            user.set_password(args['password'])
 
-        interest = args['interests'].split(',')
-        for i in range(len(interest)):
-            interest[i] = interest[i].lower().rstrip().lstrip()
-            if len(interest[i]) >= 256:
-                continue
-            if Interests.query.filter_by(text=interest[i]).first() is None:
-                db.session.add(Interests(text=interest[i]))
-            if Interests.query.filter_by(text=interest[i]).first() not in user.interests:
-                user.interests.append(Interests.query.filter_by(text=interest[i]).first())
+            interest = args['interests'].split(',')
+            for i in range(len(interest)):
+                interest[i] = interest[i].lower().rstrip().lstrip()
+                if len(interest[i]) >= 256:
+                    continue
+                if Interests.query.filter_by(text=interest[i]).first() is None:
+                    db.session.add(Interests(text=interest[i]))
+                if Interests.query.filter_by(text=interest[i]).first() not in user.interests:
+                    user.interests.append(Interests.query.filter_by(text=interest[i]).first())
+                db.session.commit()
+
+            meta_tags = args['meta_tags'].split('.')
+            for i in range(len(meta_tags)):
+                meta_tags[i] = meta_tags[i].lower().rstrip().lstrip()
+                if len(meta_tags[i]) >= 256:
+                    continue
+                if MetaTags.query.filter_by(text=meta_tags[i]).first() is None:
+                    db.session.add(MetaTags(text=meta_tags[i]))
+                if MetaTags.query.filter_by(text=meta_tags[i]).first() not in user.meta_tags:
+                    user.meta_tags.append(MetaTags.query.filter_by(text=meta_tags[i]).first())
+                db.session.commit()
+
+            db.session.add(user)
             db.session.commit()
-
-        meta_tags = args['meta_tags'].split('.')
-        for i in range(len(meta_tags)):
-            meta_tags[i] = meta_tags[i].lower().rstrip().lstrip()
-            if len(meta_tags[i]) >= 256:
-                continue
-            if MetaTags.query.filter_by(text=meta_tags[i]).first() is None:
-                db.session.add(MetaTags(text=meta_tags[i]))
-            if MetaTags.query.filter_by(text=meta_tags[i]).first() not in user.meta_tags:
-                user.meta_tags.append(MetaTags.query.filter_by(text=meta_tags[i]).first())
-            db.session.commit()
-
-        db.session.add(user)
-        db.session.commit()
-        return jsonify({'success': 'OK'})
+            return jsonify({'success': 'OK'})
+        except Exception as e:
+            return jsonify({'error': 'An error occurred'})
 
 
 class SingleLessonApi(Resource):
@@ -281,10 +284,7 @@ class SingleLessonListApi(Resource):
                 'author_id': lesson.user_id,
                 'rating': lesson.rating,
                 'date_added': lesson.date_added,
-                'comments': {}
             }
-            for comment in lesson.comments:
-                result['comments'][comment.id] = {'comment_id': comment.id, 'user_id': comment.user_id}
             all_lessons_json[lesson.id] = result
         return jsonify({'lessons': all_lessons_json})
 
@@ -308,54 +308,60 @@ class CommentApi(Resource):
         return jsonify({'comment': result})
 
     def delete(self, id):
-        args = self.parser.parse_args()
-        abort_if_username_or_password_does_not_match(args['username'], args['password'])
-        abort_if_comment_not_found(id)
-        user = User.query.filter_by(username=args['username']).first()
-        comment = LessonComment.query.filter_by(id=id).first()
-        lesson = SingleLesson.query.filter_by(id=comment.lesson_id).first()
-        if comment.user_id != user.id:
-            return jsonify({'error': 'The user {} did not leave this comment'.format(args['username'])})
-        lesson_comments = []
-        for com in user.comments:
-            if com.lesson_id == comment.lesson_id:
-                lesson_comments.append(com)
-        # Изменяем рейтинг урока только в том случае, если это был первый комментарий пользователя
-        if lesson_comments[0].id == comment.id:
-            lesson.rating_sum -= comment.rating
-            if len(lesson_comments) > 1:
-                lesson.rating_sum += lesson_comments[1].rating
-                comment.rating_influence = True
-            else:
-                lesson.rating_influence_comments -= 1
-            if len(lesson.comments) - 1 <= 0:
-                lesson.rating = 10
-                lesson.rating_sum = 0
-            else:
-                lesson.rating = lesson.rating_sum / lesson.rating_influence_comments
-        db.session.delete(comment)
-        db.session.commit()
-        return jsonify({'success': 'OK'})
+        try:
+            args = self.parser.parse_args()
+            abort_if_username_or_password_does_not_match(args['username'], args['password'])
+            abort_if_comment_not_found(id)
+            user = User.query.filter_by(username=args['username']).first()
+            comment = LessonComment.query.filter_by(id=id).first()
+            lesson = SingleLesson.query.filter_by(id=comment.lesson_id).first()
+            if comment.user_id != user.id:
+                return jsonify({'error': 'The user {} did not leave this comment'.format(args['username'])})
+            lesson_comments = []
+            for com in user.comments:
+                if com.lesson_id == comment.lesson_id:
+                    lesson_comments.append(com)
+            # Изменяем рейтинг урока только в том случае, если это был первый комментарий пользователя
+            if lesson_comments[0].id == comment.id:
+                lesson.rating_sum -= comment.rating
+                if len(lesson_comments) > 1:
+                    lesson.rating_sum += lesson_comments[1].rating
+                    comment.rating_influence = True
+                else:
+                    lesson.rating_influence_comments -= 1
+                if len(lesson.comments) - 1 <= 0:
+                    lesson.rating = 10
+                    lesson.rating_sum = 0
+                else:
+                    lesson.rating = lesson.rating_sum / lesson.rating_influence_comments
+            db.session.delete(comment)
+            db.session.commit()
+            return jsonify({'success': 'OK'})
+        except Exception as e:
+            return jsonify({'error': 'An error occurred'})
 
     def put(self, id):
-        args = self.parser.parse_args()
-        abort_if_username_or_password_does_not_match(args['username'], args['password'])
-        abort_if_comment_not_found(id)
-        user = User.query.filter_by(username=args['username']).first()
-        comment = LessonComment.query.filter_by(id=id).first()
-        lesson = SingleLesson.query.filter_by(id=comment.lesson_id).first()
-        if comment.user_id != user.id:
-            return jsonify({'error': 'The user {} did not leave this comment'.format(args['username'])})
-        if args['text'] is not None:
-            comment.text = args['text']
-        if args['rating'] is not None:
-            if comment.rating_influence:
-                lesson.rating_sum -= comment.rating
-                lesson.rating_sum += float(args['rating'])
-                lesson.rating = lesson.rating_sum / lesson.rating_influence_comments
-            comment.rating = float(args['rating'])
-        db.session.commit()
-        return jsonify({'success': 'OK'})
+        try:
+            args = self.parser.parse_args()
+            abort_if_username_or_password_does_not_match(args['username'], args['password'])
+            abort_if_comment_not_found(id)
+            user = User.query.filter_by(username=args['username']).first()
+            comment = LessonComment.query.filter_by(id=id).first()
+            lesson = SingleLesson.query.filter_by(id=comment.lesson_id).first()
+            if comment.user_id != user.id:
+                return jsonify({'error': 'The user {} did not leave this comment'.format(args['username'])})
+            if args['text'] is not None:
+                comment.text = args['text']
+            if args['rating'] is not None:
+                if comment.rating_influence:
+                    lesson.rating_sum -= comment.rating
+                    lesson.rating_sum += float(args['rating'])
+                    lesson.rating = lesson.rating_sum / lesson.rating_influence_comments
+                comment.rating = float(args['rating'])
+            db.session.commit()
+            return jsonify({'success': 'OK'})
+        except Exception as e:
+            return jsonify({'error': 'An error occurred'})
 
 
 class CommentListApi(Resource):

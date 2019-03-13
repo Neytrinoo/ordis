@@ -354,7 +354,7 @@ def channel_lessons(user_id):
             db.session.commit()
         return redirect(url_for('channel_main', user_id=user_id))
     lessons = user.lessons
-    lessons = list(reversed(sorted(lessons, key=lambda x: x.views)))
+    lessons = list(reversed(sorted(lessons, key=lambda x: x.date_added)))
     views_name = []
     dates = []
     # Добавляем в views_name правильное склонение числа просмотров, а в dates - правильное отображение даты.
