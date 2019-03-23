@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}
+{{title}}
+{% endblock %}
+{% block links%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/channel_style.css')}}">
+{% block links2 %}
+{% endblock %}
+{% endblock %}
+{% block content %}
+<div class="channel_head">
+    {% if user.id == current_user.id%}
+    <a type="button" class="btn btn-primary change_head_btn" data-toggle="modal" data-target="#exampleModal">
+    </a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Изменить оформление канала</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" novalidate enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <p>
+                            {{ form.image.label }}
+                            {{ form.image }}
+                            {% for error in form.image.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        <p>{{ form.submit(class='change_channel_head') }}</p>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </form>
+            </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="channel_menu">
+    <div class="user_avatar"></div>
+    <p class="channel_name">{{channel_name}}</p>
+    <div class="page_select">
+        <a href="{{url_for('channel.channel_main', user_id=user.id)}}" id="main_page_link">Главная</a>
+        <a href="" id="courses_link">Курсы</a>
+        <a href="{{url_for('channel.channel_lessons', user_id=user.id)}}" id="lessons_link">Уроки</a>
+        <a href="" id="about_channel_link">О канале</a>
+    </div>
+    {% if not current_user.is_following(user) %}
+    <a href="{{url_for('subscribe', username=user.username, next=request.path)}}" class="subscribe">Подписаться</a>
+    {% else %}
+    <a href="{{url_for('unsubscribe', username=user.username, next=request.path)}}" class="subscribe">Отписаться</a>
+    {% endif %}
+    <p class="count_subscribers">{{user.followers.count()}}</p>
+</div>
+{% block channel_content %}
+
+{% endblock %}
+<style>
+    .user_avatar {
+        display: block;
+        background: url("{{url_for('avatar', id=user.id)}}") no-repeat;
+        width: 80px;
+        height: 80px;
+        background-size: 100%;
+        margin-top: -20px;
+        margin-left: 122px;
+        border-color: transparent !important;
+        float: left;
+        background-color: transparent !important;
+        /*color: transparent !important;*/
+        padding-left: -20px !important;
+    }
+    .channel_head {
+    {% if is_channel_head %}
+    background: url("{{url_for('channel_head', user_id=user.id)}}") no-repeat;
+    {% else %}
+    background: url("{{ url_for('static', filename='data/base/base_channel_head.png')}}");
+    {%endif%}
+    }
+
+
+</style>
+{% endblock %}

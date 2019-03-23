@@ -1,0 +1,13 @@
+{% extends 'channel/channel.html' %}
+{% block links2 %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/channel_main_style.css')}}">
+{% endblock %}
+
+{% block channel_content %}
+<p class="channel_content_title">Популярные уроки</p>
+<div class="popular_lessons_group">
+    {% include 'lesson_views.html' %}
+</div>
+<style>
+</style>
+{% endblock %}

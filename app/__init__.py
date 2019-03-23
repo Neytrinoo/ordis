@@ -11,4 +11,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 migrate = Migrate(app, db)
 
+from .channel import channel
+app.register_blueprint(channel, url_prefix='/channel')
+
 from app import views, models, api

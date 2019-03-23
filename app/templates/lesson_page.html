@@ -13,10 +13,9 @@
     <a href="video/duel.mp4">Скачайте видео</a>.
 </video>
 <div class="about_channel">
-    <a class="user_avatar_channel" href="{{url_for('channel_main', user_id=lesson.user_id)}}"
+    <a class="user_avatar_channel" href="{{url_for('channel.channel_main', user_id=lesson.user_id)}}"
        style="background: url({{url_for('avatar', id=lesson.user_id)}}) no-repeat; background-size:100%;"></a>
-    <a href="{{url_for('channel_main', user_id=lesson.user_id)}}" class="channel_name">{{lesson.user.channel_name}}</a>
-
+    <a href="{{url_for('channel.channel_main', user_id=lesson.user_id)}}" class="channel_name">{{lesson.user.channel_name}}</a>
     {% if not current_user.is_following(lesson.user) %}
     <a href="{{url_for('subscribe', username=lesson.user.username, next=request.path)}}" class="subscribe">Подписаться</a>
     {% else %}
@@ -92,9 +91,9 @@
 
         <div class="user_comment_block">
             <div class="user_block">
-                <a class="comment_user_avatar" href="{{url_for('channel_main', user_id=lesson.comments[i].user_id)}}"
+                <a class="comment_user_avatar" href="{{url_for('channel.channel_main', user_id=lesson.comments[i].user_id)}}"
                    style="background: url({{url_for('avatar', id=lesson.comments[i].user_id)}}) no-repeat; background-size:100%;"></a>
-                <a href="{{url_for('channel_main', user_id=lesson.comments[i].user_id)}}" class="link_username">{{lesson.comments[i].user.username}}</a>
+                <a href="{{url_for('channel.channel_main', user_id=lesson.comments[i].user_id)}}" class="link_username">{{lesson.comments[i].user.username}}</a>
             </div>
             <p class="comment_block">
                 {{lesson.comments[i].text}}

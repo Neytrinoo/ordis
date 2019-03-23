@@ -79,11 +79,6 @@ class AddLessonForm(FlaskForm):
             raise ValidationError('Длина не должна превышать 20000 символов')
 
 
-class ChannelHeadForm(FlaskForm):
-    image = FileField('Картинка', render_kw={'accept': 'image/*'})
-    submit = SubmitField('Изменить оформление канала')
-
-
 class CommentLessonForm(FlaskForm):
     comment = TextAreaField('Комментарии', validators=[DataRequired('')])
     stars = RadioField('Рейтинг', choices=[('1', ''), ('2', ''), ('3', ''), ('4', ''), ('5', ''),

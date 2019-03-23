@@ -49,6 +49,7 @@ p {
 .lessons_column {
     float: left;
     margin-right: 28px;
+    margin-bottom: 28px;
 }
 
 .popular_lessons_group {
@@ -58,7 +59,6 @@ p {
 .content {
     overflow: auto;
 }
-
 
 
 .popular_lessons_group {
@@ -116,4 +116,7 @@ p {
     color: black;
     border-bottom: 1px solid #0090ff;
     text-decoration: none;
+}
+.right_none {
+    clear: left;
 }
