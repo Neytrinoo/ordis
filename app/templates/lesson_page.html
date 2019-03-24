@@ -17,15 +17,19 @@
        style="background: url({{url_for('avatar', id=lesson.user_id)}}) no-repeat; background-size:100%;"></a>
     <a href="{{url_for('channel.channel_main', user_id=lesson.user_id)}}" class="channel_name">{{lesson.user.channel_name}}</a>
     {% if not current_user.is_following(lesson.user) %}
-    <a href="{{url_for('subscribe', username=lesson.user.username, next=request.path)}}" class="subscribe">Подписаться</a>
+    <a href="{{url_for('channel.subscribe', username=lesson.user.username, next=request.path)}}" class="subscribe">Подписаться</a>
     {% else %}
-    <a href="{{url_for('unsubscribe', username=lesson.user.username, next=request.path)}}" class="subscribe">Отписаться</a>
+    <a href="{{url_for('channel.unsubscribe', username=lesson.user.username, next=request.path)}}" class="subscribe">Отписаться</a>
     {% endif %}
     <p class="count_subscribers">{{lesson.user.followers.count()}}</p>
 </div>
 <p class="about_lesson_title">Описание урока</p>
 <div class="about_lesson">
-    <p class="about_lesson_text">{{lesson.about_lesson}}</p>
+    <p class="about_lesson_text">
+        {% for line in about_lesson%}
+        {{line}}<br>
+        {% endfor %}
+    </p>
 </div>
 <div class="lesson_name">
     <p class="lesson_name_text">{{lesson.lesson_name}}</p>
@@ -66,7 +70,11 @@
 </div>
 <p class="extra_materials_title">Дополнительные материалы</p>
 <div class="extra_materials">
-    <p class="extra_materials_text"> {{lesson.extra_material}}</p>
+    <p class="extra_materials_text">
+        {% for line in extra_material%}
+        {{line}}<br>
+        {% endfor %}
+    </p>
 </div>
 <p class="comment_title">Комментарии</p>
 <p class="comments_count">{{count_comments}}</p>

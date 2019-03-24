@@ -5,6 +5,42 @@ from app.views import correct_form_views
 from app import db
 from datetime import datetime
 from .forms import ChannelHeadForm
+from flask_login import current_user
+from werkzeug.urls import url_parse
+
+
+# Подписаться на канал
+@channel.route('/subscribe/<username>')
+def subscribe(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('Пользователь {} не найден'.format(username))
+        return redirect(url_for('index'))
+    if current_user.is_anonymous:
+        return redirect(url_for('sign_in'))
+    current_user.follow(user)
+    db.session.commit()
+    next_page = request.args.get('next')
+    if not next_page or url_parse(next_page).netloc != '':
+        next_page = url_for('channel_main', user_id=user.id)
+    return redirect(next_page)
+
+
+# Отписаться от канала
+@channel.route('/unsubscribe/<username>')
+def unsubscribe(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('Пользователь {} не найден'.format(username))
+        return redirect(url_for('index'))
+    if current_user.is_anonymous:
+        return redirect(url_for('sign_in'))
+    current_user.unfollow(user)
+    db.session.commit()
+    next_page = request.args.get('next')
+    if not next_page or url_parse(next_page).netloc != '':
+        next_page = url_for('channel_main', user_id=user.id)
+    return redirect(next_page)
 
 
 @channel.route('/<int:user_id>/main', methods=['GET', 'POST'])
@@ -25,7 +61,7 @@ def channel_main(user_id):
             file = request.files['image'].read()
             user.channel_head = file
             db.session.commit()
-        return redirect(url_for('channel_main', user_id=user_id))
+        return redirect(url_for('channel.channel_main', user_id=user_id))
     lessons = user.lessons
     lessons = list(reversed(sorted(lessons, key=lambda x: x.views)))
     views_name = []
@@ -42,7 +78,8 @@ def channel_main(user_id):
             date = lesson.date_added.strftime('%d.%m.%Y')
         dates.append(date)
 
-    return render_template('channel/channel_main.html', title=user.channel_name + ' - Ordis', user=user, is_channel_head=is_channel_head, form=form, channel_name=channel_name,
+    return render_template('channel/channel_main.html', title=user.channel_name + ' - Ordis', user=user, is_channel_head=is_channel_head, form=form,
+                           channel_name=channel_name,
                            lessons=lessons[:5], views=views_name, dates=dates)
 
 
@@ -64,7 +101,7 @@ def channel_lessons(user_id):
             file = request.files['image'].read()
             user.channel_head = file
             db.session.commit()
-        return redirect(url_for('channel_main', user_id=user_id))
+        return redirect(url_for('channel.channel_main', user_id=user_id))
     lessons = user.lessons
     lessons = list(reversed(sorted(lessons, key=lambda x: x.date_added)))
     views_name = []
@@ -81,5 +118,6 @@ def channel_lessons(user_id):
             date = lesson.date_added.strftime('%d.%m.%Y')
         dates.append(date)
 
-    return render_template('channel/channel_lessons.html', title=user.channel_name + ' - Ordis', user=user, is_channel_head=is_channel_head, form=form, channel_name=channel_name,
+    return render_template('channel/channel_lessons.html', title=user.channel_name + ' - Ordis', user=user, is_channel_head=is_channel_head, form=form,
+                           channel_name=channel_name,
                            lessons=lessons, views=views_name, dates=dates)

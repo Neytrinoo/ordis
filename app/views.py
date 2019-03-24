@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm, AddLessonForm,  CommentLessonForm, SearchForm
+from app.forms import LoginForm, RegistrationForm, AddLessonForm, CommentLessonForm, SearchForm
 from app.models import User, Interests, MetaTags, SingleLesson, VideoLesson, AttachedFile, MetaTagsLesson, LessonComment
 from werkzeug.urls import url_parse
 from moviepy.editor import VideoFileClip
@@ -190,40 +190,6 @@ def add_lesson():
     return render_template('add_lesson.html', form=form, title='Ordis - Добавление урока')
 
 
-# Подписаться на канал
-@app.route('/subscribe/<username>')
-def subscribe(username):
-    user = User.query.filter_by(username=username).first()
-    if user is None:
-        flash('Пользователь {} не найден'.format(username))
-        return redirect(url_for('index'))
-    if current_user.is_anonymous:
-        return redirect(url_for('sign_in'))
-    current_user.follow(user)
-    db.session.commit()
-    next_page = request.args.get('next')
-    if not next_page or url_parse(next_page).netloc != '':
-        next_page = url_for('channel_main', user_id=user.id)
-    return redirect(next_page)
-
-
-# Отписаться от канала
-@app.route('/unsubscribe/<username>')
-def unsubscribe(username):
-    user = User.query.filter_by(username=username).first()
-    if user is None:
-        flash('Пользователь {} не найден'.format(username))
-        return redirect(url_for('index'))
-    if current_user.is_anonymous:
-        return redirect(url_for('sign_in'))
-    current_user.unfollow(user)
-    db.session.commit()
-    next_page = request.args.get('next')
-    if not next_page or url_parse(next_page).netloc != '':
-        next_page = url_for('channel_main', user_id=user.id)
-    return redirect(next_page)
-
-
 # Функция поиска
 @app.route('/search')
 def search():
@@ -294,9 +260,6 @@ def correct_form_views(view):
     return res
 
 
-# Страница канала
-
-
 # Страница урока
 @app.route('/lesson/<int:lesson_id>', methods=['GET', 'POST'])
 def lesson_page(lesson_id):
@@ -331,8 +294,10 @@ def lesson_page(lesson_id):
         db.session.commit()
         return redirect(url_for('lesson_page', lesson_id=lesson.id))
     count_comments = len(lesson.comments)
+    about_lesson = lesson.about_lesson.split('\n')
+    extra_material = lesson.extra_material.split('\n')
     return render_template('lesson_page.html', title=lesson.lesson_name + ' - Ordis', lesson=lesson, views=views, filenames=filenames, form=form,
-                           count_comments=count_comments)
+                           count_comments=count_comments, about_lesson=about_lesson, extra_material=extra_material)
 
 
 # Регистрация

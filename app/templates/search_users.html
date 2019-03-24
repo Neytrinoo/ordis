@@ -18,17 +18,17 @@
 <div class="users_block">
     {% for user in users %}
     <div class="user">
-        <a class="user_avatar" href="{{url_for('channel_main', user_id=user.id)}}"
+        <a class="user_avatar" href="{{url_for('channel.channel_main', user_id=user.id)}}"
            style="background: url({{url_for('avatar', id=user.id)}}) no-repeat; background-size:100%;"></a>
-        <a href="{{url_for('channel_main', user_id=user.id)}}" class="link_username">{{user.channel_name}}</a>
+        <a href="{{url_for('channel.channel_main', user_id=user.id)}}" class="link_username">{{user.channel_name}}</a>
         <p class="about_channel_title">О канале</p>
         <p class="about_channel_text">{{user.about_channel}}</p>
 
     </div>
     {% if not current_user.is_following(user) %}
-        <a href="{{url_for('subscribe', username=user.username, next='/channel/' + user.id|string + '/main')}}" class="subscribe">Подписаться</a>
+        <a href="{{url_for('channel.subscribe', username=user.username, next='/channel/' + user.id|string + '/main')}}" class="subscribe">Подписаться</a>
         {% else %}
-        <a href="{{url_for('unsubscribe', username=user.username, next='/channel/' + user.id|string + '/main')}}" class="subscribe">Отписаться</a>
+        <a href="{{url_for('channel.unsubscribe', username=user.username, next='/channel/' + user.id|string + '/main')}}" class="subscribe">Отписаться</a>
         {% endif %}
         <p class="count_subscribers">{{user.followers.count()}}</p>
     {% endfor %}

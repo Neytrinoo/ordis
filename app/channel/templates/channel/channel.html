@@ -3,7 +3,7 @@
 {{title}}
 {% endblock %}
 {% block links%}
-<link rel="stylesheet" href="{{url_for('static', filename='css/channel_style.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/channel/channel_style.css')}}">
 {% block links2 %}
 {% endblock %}
 {% endblock %}
@@ -54,9 +54,9 @@
         <a href="" id="about_channel_link">О канале</a>
     </div>
     {% if not current_user.is_following(user) %}
-    <a href="{{url_for('subscribe', username=user.username, next=request.path)}}" class="subscribe">Подписаться</a>
+    <a href="{{url_for('channel.subscribe', username=user.username, next=request.path)}}" class="subscribe">Подписаться</a>
     {% else %}
-    <a href="{{url_for('unsubscribe', username=user.username, next=request.path)}}" class="subscribe">Отписаться</a>
+    <a href="{{url_for('channel.unsubscribe', username=user.username, next=request.path)}}" class="subscribe">Отписаться</a>
     {% endif %}
     <p class="count_subscribers">{{user.followers.count()}}</p>
 </div>
@@ -77,6 +77,9 @@
         background-color: transparent !important;
         /*color: transparent !important;*/
         padding-left: -20px !important;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
     }
     .channel_head {
     {% if is_channel_head %}
