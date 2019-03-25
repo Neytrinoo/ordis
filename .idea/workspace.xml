@@ -4,17 +4,6 @@
     <list default="true" id="d42938d2-2366-4150-94c7-14dacfa6ba16" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/channel/static/channel/css/channel_lessons_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/channel/channel_lessons_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/channel/static/channel/css/channel_main_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/channel/channel_main_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/channel/static/channel/css/channel_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/channel/channel_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/channel/templates/channel/channel.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/channel/templates/channel/channel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/channel/templates/channel/channel_lessons.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/channel/templates/channel/channel_lessons.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/channel/templates/channel/channel_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/channel/templates/channel/channel_main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/channel/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/channel/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/lesson_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/lesson_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/search_users.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/search_users.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/test_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/test_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,7 +20,7 @@
     <SUITE FILE_PATH="coverage/flask_project$ordis__1_.coverage" NAME="ordis (1) Coverage Results" MODIFIED="1551807097941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../копия flask_project" />
     <SUITE FILE_PATH="coverage/flask_project$Unittests_in_tests_py.coverage" NAME="Unittests in tests.py Coverage Results" MODIFIED="1552046193077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/flask_project$main1.coverage" NAME="main1 Coverage Results" MODIFIED="1552223408269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/Alien_Invasion-master" />
-    <SUITE FILE_PATH="coverage/flask_project$ordis.coverage" NAME="ordis Coverage Results" MODIFIED="1553412397540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flask_project$ordis.coverage" NAME="ordis Coverage Results" MODIFIED="1553524919219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/flask_project$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1552156082471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/api" />
   </component>
   <component name="DatabaseView">
@@ -59,15 +48,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="299" column="99" selection-start-line="299" selection-start-column="85" selection-end-line="299" selection-end-column="99" />
+            <state relative-caret-position="371">
+              <caret line="254" column="135" lean-forward="true" selection-start-line="254" selection-start-column="135" selection-end-line="254" selection-end-column="135" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <marker date="1553414911408" expanded="true" signature="3070:3075" ph="..." />
-                <marker date="1553414911408" expanded="true" signature="12840:15006" ph="..." />
+                <marker date="1553525969355" expanded="true" signature="3070:3075" ph="..." />
+                <marker date="1553525969355" expanded="true" signature="13118:15284" ph="..." />
               </folding>
             </state>
           </provider>
@@ -76,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/lesson_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="93" column="45" lean-forward="true" selection-start-line="93" selection-start-column="45" selection-end-line="93" selection-end-column="45" />
+            <state relative-caret-position="1581">
+              <caret line="93" column="45" selection-start-line="93" selection-start-column="45" selection-end-line="93" selection-end-column="45" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
@@ -88,13 +77,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/channel/templates/channel/channel.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="75" column="20" lean-forward="true" selection-start-line="75" selection-start-column="20" selection-end-line="75" selection-end-column="20" />
+            <state relative-caret-position="1139">
+              <caret line="67" column="23" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
               <folding>
-                <element signature="e#956#963#1" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -122,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="306">
               <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
             </state>
           </provider>
@@ -149,7 +137,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/lesson_views.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
+            <state relative-caret-position="272">
               <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -226,9 +214,9 @@
         <option value="$PROJECT_DIR$/app/templates/base.html" />
         <option value="$PROJECT_DIR$/app/channel/templates/channel/channel_lessons.html" />
         <option value="$PROJECT_DIR$/app/channel/templates/channel/channel_main.html" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/templates/lesson_page.html" />
         <option value="$PROJECT_DIR$/app/channel/templates/channel/channel.html" />
+        <option value="$PROJECT_DIR$/app/views.py" />
       </list>
     </option>
   </component>
@@ -314,7 +302,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lesson 30" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -510,7 +498,8 @@
       <workItem from="1552567518083" duration="874000" />
       <workItem from="1552728326514" duration="620000" />
       <workItem from="1553332396850" duration="3868000" />
-      <workItem from="1553411823599" duration="4622000" />
+      <workItem from="1553411823599" duration="4771000" />
+      <workItem from="1553524217884" duration="1384000" />
     </task>
     <servers />
   </component>
@@ -538,18 +527,18 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158716000" />
+    <option name="totallyTimeSpent" value="160249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.13486141" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.1359275" />
       <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" weight="0.2707889" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32827735" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -868,6 +857,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/lesson_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1581">
+          <caret line="93" column="45" selection-start-line="93" selection-start-column="45" selection-end-line="93" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#5;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/channel/templates/channel/channel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="23" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/channel/templates/channel/channel_lessons.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/channel/templates/channel/channel_main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/css/base_style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1394">
@@ -882,16 +915,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/lesson_views.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
+        <state relative-caret-position="272">
           <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
           <folding>
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -909,52 +935,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/channel/templates/channel/channel_main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/channel/templates/channel/channel_lessons.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="299" column="99" selection-start-line="299" selection-start-column="85" selection-end-line="299" selection-end-column="99" />
+        <state relative-caret-position="371">
+          <caret line="254" column="135" lean-forward="true" selection-start-line="254" selection-start-column="135" selection-end-line="254" selection-end-column="135" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <marker date="1553414911408" expanded="true" signature="3070:3075" ph="..." />
-            <marker date="1553414911408" expanded="true" signature="12840:15006" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/lesson_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="93" column="45" lean-forward="true" selection-start-line="93" selection-start-column="45" selection-end-line="93" selection-end-column="45" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#5;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/channel/templates/channel/channel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="75" column="20" lean-forward="true" selection-start-line="75" selection-start-column="20" selection-end-line="75" selection-end-column="20" />
-          <folding>
-            <element signature="e#956#963#1" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#p#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1553525969355" expanded="true" signature="3070:3075" ph="..." />
+            <marker date="1553525969355" expanded="true" signature="13118:15284" ph="..." />
           </folding>
         </state>
       </provider>

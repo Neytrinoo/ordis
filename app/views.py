@@ -190,17 +190,8 @@ def add_lesson():
     return render_template('add_lesson.html', form=form, title='Ordis - Добавление урока')
 
 
-# Функция поиска
-@app.route('/search')
-def search():
+def lesson_search(search_text):
     morph = pymorphy2.MorphAnalyzer()
-    search_text = request.args.get('search_input')
-    copy_search_text = search_text
-    what_is = request.args.get('what_is')
-    if not search_text or url_parse(search_text).netloc != '':
-        flash('Поисковый запрос пуст')
-        return redirect(url_for('index'))
-
     search_text = search_text.split()
     need_tags = []
     lesson_tags = []
@@ -211,23 +202,48 @@ def search():
         if MetaTagsLesson.query.filter_by(text=search_now).first() is not None:
             lesson_tags.append(MetaTagsLesson.query.filter_by(text=search_now).first())
 
-    users_tags = {}
     lesson_tags_count = {}
-    if what_is == 'lessons' or what_is is None:
-        for tag in lesson_tags:
-            for lesson in tag.lesson:
-                if lesson not in lesson_tags_count:
-                    lesson_tags_count[lesson] = 1
-                else:
-                    lesson_tags_count[lesson] += 1
-        lesson_tags_count = list(reversed(sorted(lesson_tags_count.items(), key=lambda x: x[1])))
+    for tag in lesson_tags:
+        for lesson in tag.lesson:
+            if lesson not in lesson_tags_count:
+                lesson_tags_count[lesson] = 1
+            else:
+                lesson_tags_count[lesson] += 1
+    lesson_tags_count = list(reversed(sorted(lesson_tags_count.items(), key=lambda x: x[1])))
+    return ([x[0] for x in lesson_tags_count], need_tags)
 
+
+def user_search(search_text):
+    lesson_tags_count, need_tags = lesson_search(search_text)
+    users_tags = {}
+    for tag in need_tags:
+        for user in tag.users:
+            if user not in users_tags:
+                users_tags[user] = 1
+            else:
+                users_tags[user] += 1
+    users_tags = list(reversed(sorted(users_tags.items(), key=lambda x: x[1])))
+    return users_tags
+
+
+# Функция поиска
+@app.route('/search')
+def search():
+    search_text = request.args.get('search_input')
+    copy_search_text = search_text
+    if not search_text or url_parse(search_text).netloc != '':
+        flash('Поисковый запрос пуст')
+        return redirect(url_for('index'))
+    what_is = request.args.get('what_is')
+    if what_is == 'lessons' or what_is is None:
+        lesson_tags_count, need_tags = lesson_search(search_text)
+        copy_search_text = search_text
         if not lesson_tags_count:
             flash('Ничего не найдено')
             return redirect(url_for('index'))
         views_name = []
         dates = []
-        for lesson, les_id in lesson_tags_count:
+        for lesson in lesson_tags_count:
             res = correct_form_views(lesson.views)
             views_name.append(res)
             now = datetime.utcnow()
@@ -236,16 +252,8 @@ def search():
             else:
                 date = lesson.date_added.strftime('%d.%m.%Y')
             dates.append(date)
-
-        return render_template('search_lesson.html', lessons=[x[0] for x in lesson_tags_count], views=views_name, dates=dates, search=copy_search_text)
-    for tag in need_tags:
-        for user in tag.users:
-            if user not in users_tags:
-                users_tags[user] = 1
-            else:
-                users_tags[user] += 1
-    users_tags = list(reversed(sorted(users_tags.items(), key=lambda x: x[1])))
-    print(users_tags)
+        return render_template('search_lesson.html', lessons=lesson_tags_count, views=views_name, dates=dates, search=copy_search_text)
+    users_tags = user_search(search_text)
     return render_template('search_users.html', users=[x[0] for x in users_tags], search=copy_search_text)
 
 
