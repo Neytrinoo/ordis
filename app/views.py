@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm, AddLessonForm, CommentLessonForm, SearchForm
+from app.forms import *
 from app.models import User, Interests, MetaTags, SingleLesson, VideoLesson, AttachedFile, MetaTagsLesson, LessonComment
 from werkzeug.urls import url_parse
 from moviepy.editor import VideoFileClip
@@ -266,6 +266,43 @@ def correct_form_views(view):
     else:
         res = VIEWS[view[-1]]
     return res
+
+
+@login_required
+@app.route('/lesson/<int:lesson_id>/edit', methods=['GET', 'POST'])
+def edit_lesson(lesson_id):
+    lesson = SingleLesson.query.filter_by(id=lesson_id).first()
+    if lesson is None:
+        flash('Такого урока нет!')
+        return redirect(url_for('index'))
+    if lesson.user_id != current_user.id:
+        flash('Вы не можете редактировать чужой урок')
+        return redirect(url_for('index'))
+    form = EditLessonForm()
+    if form.validate_on_submit():
+        lesson.lesson_name = form.lesson_name
+        lesson.about_lesson = form.about_lesson.data
+        lesson.extra_material = form.extra_material.data
+        meta_tags = form.meta_tags.data.split(',')
+        for i in range(len(meta_tags)):
+            meta_tags[i] = meta_tags[i].lower().rstrip().lstrip()
+            if len(meta_tags[i]) >= 256:
+                continue
+            if MetaTagsLesson.query.filter_by(text=meta_tags[i]).first() is None:
+                db.session.add(MetaTagsLesson(text=meta_tags[i]))
+                db.session.commit()
+            if MetaTagsLesson.query.filter_by(text=meta_tags[i]).first() not in lesson.meta_tags:
+                lesson.meta_tags.append(MetaTagsLesson.query.filter_by(text=meta_tags[i]).first())
+                db.session.commit()
+        if form.preview.data:
+            lesson.preview = request.files['preview'].read()
+        db.session.commit()
+    elif request.method == 'GET':
+        form.lesson_name.data = lesson.lesson_name
+        form.about_lesson.data = lesson.about_lesson
+        form.extra_material.data = lesson.extra_material
+        form.meta_tags.data = ','.join([tag.text for tag in lesson.meta_tags])
+    return render_template('edit_lesson.html', title='Редактирование урока - Ordis', form=form)
 
 
 # Страница урока

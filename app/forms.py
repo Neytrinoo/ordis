@@ -79,6 +79,15 @@ class AddLessonForm(FlaskForm):
             raise ValidationError('Длина не должна превышать 20000 символов')
 
 
+class EditLessonForm(FlaskForm):
+    lesson_name = StringField('Название урока', validators=[DataRequired()])
+    preview = FileField('Превью урока', render_kw={'accept': 'image/*'})
+    about_lesson = TextAreaField('Описание урока', validators=[DataRequired()])
+    extra_material = TextAreaField('Дополнительный материал', validators=[DataRequired()])
+    meta_tags = StringField('Мета-теги', validators=[DataRequired()])
+    submit = SubmitField('Изменить урок')
+
+
 class CommentLessonForm(FlaskForm):
     comment = TextAreaField('Комментарии', validators=[DataRequired('')])
     stars = RadioField('Рейтинг', choices=[('1', ''), ('2', ''), ('3', ''), ('4', ''), ('5', ''),

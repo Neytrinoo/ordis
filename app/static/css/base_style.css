@@ -1,13 +1,14 @@
 body {
-    overflow-x: hidden!important;
+    overflow-x: hidden !important;
 }
+
 .up_menu {
     height: 63px;
     background-color: #00aeff;
     width: inherit;
 }
 
-.menu_link {
+.menu-button {
     display: block;
     background-image: url('/static/img/menu_logo.png');
     width: 35px;
@@ -15,6 +16,21 @@ body {
     float: left;
     margin-left: 38px;
     margin-top: 16px;
+    background-size: 100%;
+    border-color: transparent !important;
+    background-color: transparent !important;
+}
+
+.menu-button:hover {
+    background-color: transparent !important;
+}
+
+.menu-button::after {
+    display: none!important;
+}
+
+.menu-button:focus {
+    background-color: transparent !important;
 }
 
 .learn_button {
@@ -67,18 +83,21 @@ body {
 
 .content {
     background-color: #dfe0e0;
-    overflow-x: hidden!important;
-     min-height: calc(100vh - 80px);
+    overflow-x: hidden !important;
+    min-height: calc(100vh - 80px);
 }
+
 body {
     height: 100%;
 }
-footer{
+
+footer {
     height: 100px;
     width: 100%;
     background-color: #fff;
     border-radius: 10px;
 }
+
 .footer_text {
     float: right;
     margin-top: 90px;

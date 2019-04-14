@@ -15,7 +15,15 @@
 <body>
 <div class="content">
     <div class="up_menu">
-        <a href="{{url_for('index')}}" class="menu_link"></a>
+        <div class="dropdown">
+            <a href="#" class="btn btn-secondary dropdown-toggle menu-button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{{url_for('index')}}">Главная</a>
+                <a class="dropdown-item" href="">Подписки</a>
+            </div>
+        </div>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle learn_button" type="button" id="dropdownMenu2"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,6 +50,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="{{url_for('channel.channel_main', user_id=current_user.id)}}">Профиль</a>
                 <a class="dropdown-item" href="{{url_for('add_lesson')}}">Добавить урок</a>
+                <a class="dropdown-item" href="">Редактировать профиль</a>
                 <a class="dropdown-item" href="{{url_for('logout')}}">Выйти</a>
             </div>
         </div>
@@ -64,7 +73,7 @@
 
 </div>
 <footer>
-<p class="footer_text">Ordis - видеохостинг для обучения. Изучил сам - научи других</p>
+    <p class="footer_text">Ordis - видеохостинг для обучения. Изучил сам - научи других</p>
 </footer>
 <style>
     {% if current_user.is_authenticated %}
@@ -96,7 +105,7 @@
         background-color: transparent !important;
     }
 
-    {%endif%}
+    {% endif %}
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
