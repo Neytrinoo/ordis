@@ -122,6 +122,25 @@ def channel_head(user_id):
     return app.response_class(channel_head, mimetype='application/octet-stream')
 
 
+def add_attached_files(lesson):
+    attached_files = request.files.getlist('attached_file')
+    myzip = ZipFile(join(dirname(realpath(__file__)), 'static/data/attached_files_archives/' + current_user.username + '_' + str(lesson.id) + '.zip'), 'a')
+    for i in range(len(attached_files)):
+        # Путь до вложенного файла в файловой системе. Создается так: data/attached_files/имяПользователя_idУрока_КоличествоВложенныхФайловВУроке+1.расширениеФайла
+        file_path = 'data/attached_files/' + current_user.username + '_' + str(lesson.id) + '_' + str(len(lesson.attached_files) + 1) + '.' + \
+                    attached_files[i].filename.split('.')[-1]
+        attached_files[i].save('app/static/' + file_path)
+        if len(attached_files[i].filename) >= 119:
+            file = AttachedFile(file_path=file_path, filename='attached_files' + attached_files[i].filename.split('.')[-1])
+        else:
+            file = AttachedFile(file_path=file_path, filename=attached_files[i].filename)
+        myzip.write(join(dirname(realpath(__file__)), 'static/' + file_path), arcname=attached_files[i].filename)
+        lesson.archive_attached_files_path = 'data/attached_files_archives/' + current_user.username + '_' + str(lesson.id) + '.zip'
+        lesson.attached_files.append(file)
+        db.session.add(file)
+        db.session.commit()
+
+
 # Добавление урока
 @app.route('/add_lesson', methods=['GET', 'POST'])
 @login_required
@@ -165,22 +184,7 @@ def add_lesson():
             db.session.commit()
 
         # Добавляем вложенные файлы
-        attached_files = request.files.getlist('attached_file')
-        myzip = ZipFile(join(dirname(realpath(__file__)), 'static/data/attached_files_archives/' + current_user.username + '_' + str(lesson.id) + '.zip'), 'w')
-        for i in range(len(attached_files)):
-            # Путь до вложенного файла в файловой системе. Создается так: data/attached_files/имяПользователя_idУрока_КоличествоВложенныхФайловВУроке+1.расширениеФайла
-            file_path = 'data/attached_files/' + current_user.username + '_' + str(lesson.id) + '_' + str(len(lesson.attached_files) + 1) + '.' + \
-                        attached_files[i].filename.split('.')[-1]
-            attached_files[i].save('app/static/' + file_path)
-            if len(attached_files[i].filename) >= 119:
-                file = AttachedFile(file_path=file_path, filename='attached_files' + attached_files[i].filename.split('.')[-1])
-            else:
-                file = AttachedFile(file_path=file_path, filename=attached_files[i].filename)
-            myzip.write(join(dirname(realpath(__file__)), 'static/' + file_path), arcname=attached_files[i].filename)
-            lesson.archive_attached_files_path = 'data/attached_files_archives/' + current_user.username + '_' + str(lesson.id) + '.zip'
-            lesson.attached_files.append(file)
-            db.session.add(file)
-            db.session.commit()
+        add_attached_files(lesson)
 
         current_user.lessons.append(lesson)
         db.session.add(lesson)
@@ -280,10 +284,12 @@ def edit_lesson(lesson_id):
         return redirect(url_for('index'))
     form = EditLessonForm()
     if form.validate_on_submit():
-        lesson.lesson_name = form.lesson_name
+        lesson.lesson_name = form.lesson_name.data
         lesson.about_lesson = form.about_lesson.data
         lesson.extra_material = form.extra_material.data
         meta_tags = form.meta_tags.data.split(',')
+        lesson.meta_tags = []
+        db.session.commit()
         for i in range(len(meta_tags)):
             meta_tags[i] = meta_tags[i].lower().rstrip().lstrip()
             if len(meta_tags[i]) >= 256:
@@ -293,15 +299,16 @@ def edit_lesson(lesson_id):
                 db.session.commit()
             if MetaTagsLesson.query.filter_by(text=meta_tags[i]).first() not in lesson.meta_tags:
                 lesson.meta_tags.append(MetaTagsLesson.query.filter_by(text=meta_tags[i]).first())
-                db.session.commit()
+            db.session.commit()
         if form.preview.data:
             lesson.preview = request.files['preview'].read()
+        add_attached_files(lesson)
         db.session.commit()
-    elif request.method == 'GET':
-        form.lesson_name.data = lesson.lesson_name
-        form.about_lesson.data = lesson.about_lesson
-        form.extra_material.data = lesson.extra_material
-        form.meta_tags.data = ','.join([tag.text for tag in lesson.meta_tags])
+        flash('Урок успешно изменен!')
+    form.lesson_name.data = lesson.lesson_name
+    form.about_lesson.data = lesson.about_lesson
+    form.extra_material.data = lesson.extra_material
+    form.meta_tags.data = ','.join([tag.text for tag in lesson.meta_tags])
     return render_template('edit_lesson.html', title='Редактирование урока - Ordis', form=form)
 
 

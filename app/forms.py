@@ -84,8 +84,21 @@ class EditLessonForm(FlaskForm):
     preview = FileField('Превью урока', render_kw={'accept': 'image/*'})
     about_lesson = TextAreaField('Описание урока', validators=[DataRequired()])
     extra_material = TextAreaField('Дополнительный материал', validators=[DataRequired()])
+    attached_file = MultipleFileField('Добавить вложенные файлы')
     meta_tags = StringField('Мета-теги', validators=[DataRequired()])
     submit = SubmitField('Изменить урок')
+
+    def validate_lesson_name(self, lesson_name):
+        if len(lesson_name.data) >= 256:
+            raise ValidationError('Длина не должна превышать 256 символов')
+
+    def validate_about_lesson(self, about_lesson):
+        if len(about_lesson.data) >= 3000:
+            raise ValidationError('Длина не должна превышать 3000 символов')
+
+    def validate_extra_material(self, extra_material):
+        if len(extra_material.data) >= 20000:
+            raise ValidationError('Длина не должна превышать 20000 символов')
 
 
 class CommentLessonForm(FlaskForm):

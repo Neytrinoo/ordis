@@ -24,7 +24,7 @@ user_put = {
 # print(put('http://localhost:5000/api/users/7', json=user_put).json())
 # print(get('http://localhost:5000/api/users').json())
 # print(get('http://localhost:5000/api/lessons/6').json())
-# print(put('http://localhost:5000/api/lessons/6', json={'username': 'Neytrino', 'password': 'neytrino', 'about_lesson': 'Это конечно да, но нет'}).json())
+print(put('http://localhost:5000/api/lessons/6', json={'username': 'Neytrino', 'password': 'neytrino', 'about_lesson': 'Это конечно да, но нет', 'meta_tags': 'книжки, пазлы, физика'}).json())
 # print(get('http://localhost:5000/api/lessons/1').json()['lesson']['comments'])
 # print(get('http://localhost:5000/api/lessons').json())
 # print(delete('http://localhost:5000/api/lessons/7', json={'username': 'Neytrino', 'password': 'neytrino'}).json())

@@ -40,6 +40,13 @@
             {% endfor %}
         </p>
         <p>
+            {{ form.attached_file.label }}
+            {{ form.attached_file(class='file_field', min='1', max='9999') }}
+            {% for error in form.extra_material.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
             {{ form.meta_tags.label }}
             {{ form.meta_tags(class='meta_tags', placeholder='Мета-теги, введите через запятую. Например, "python, ML, программирование"') }}
             {% for error in form.meta_tags.errors %}

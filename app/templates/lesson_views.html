@@ -19,6 +19,17 @@
             <div class="icon_views"></div>
             <p class="views_text">{{lessons[i].views}} {{views[i]}}</p>
         </div>
+        <div class="dropdown">
+            <a href="#" class="btn btn-secondary dropdown-toggle lesson_menu_button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% if current_user.is_authenticated and lessons[i].user_id == current_user.id %}
+                <a class="dropdown-item" href="{{url_for('edit_lesson', lesson_id=lessons[i].id)}}">Редактировать</a>
+                {% endif %}
+                <a class="dropdown-item" href="">Пожаловаться</a>
+            </div>
+        </div>
         <p class="date_added">{{dates[i]}}</p>
     </div>
 </div>
@@ -40,6 +51,17 @@
         <div class="views">
             <div class="icon_views"></div>
             <p class="views_text">{{lessons[i].views}} {{views[i]}}</p>
+        </div>
+        <div class="dropdown">
+            <a href="#" class="btn btn-secondary dropdown-toggle lesson_menu_button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% if current_user.is_authenticated and lessons[i].user_id == current_user.id %}
+                <a class="dropdown-item" href="{{url_for('edit_lesson', lesson_id=lessons[i].id)}}">Редактировать</a>
+                {% endif %}
+                <a class="dropdown-item" href="">Пожаловаться</a>
+            </div>
         </div>
         <p class="date_added">{{dates[i]}}</p>
     </div>
