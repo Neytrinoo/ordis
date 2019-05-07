@@ -16,7 +16,7 @@
     <a class="user_avatar_channel" href="{{url_for('channel.channel_main', user_id=lesson.user_id)}}"
        style="background: url({{url_for('avatar', id=lesson.user_id)}}) no-repeat; background-size:100%;"></a>
     <a href="{{url_for('channel.channel_main', user_id=lesson.user_id)}}" class="channel_name">{{lesson.user.channel_name}}</a>
-    {% if not current_user.is_following(lesson.user) %}
+    {% if not current_user.is_anonymous and not current_user.is_following(lesson.user) %}
     <a href="{{url_for('channel.subscribe', username=lesson.user.username, next=request.path)}}" class="subscribe">Подписаться</a>
     {% else %}
     <a href="{{url_for('channel.unsubscribe', username=lesson.user.username, next=request.path)}}" class="subscribe">Отписаться</a>

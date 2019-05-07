@@ -325,6 +325,9 @@ def lesson_page(lesson_id):
     filenames = ', '.join([file.filename for file in lesson.attached_files])
     form = CommentLessonForm()
     if form.validate_on_submit():
+        if current_user.is_anonymous:
+            flash('Зарегистрируйтесь, чтобы оставить комментарий')
+            return redirect(url_for('sign_in'))
         text = form.comment.data
         stars = int(form.stars.data)
         comment = LessonComment(text=text, rating=stars)

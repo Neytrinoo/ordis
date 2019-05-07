@@ -25,7 +25,7 @@
         <p class="about_channel_text">{{user.about_channel}}</p>
 
     </div>
-    {% if not current_user.is_following(user) %}
+    {% if not current_user.is_anonymous and not current_user.is_following(user) %}
         <a href="{{url_for('channel.subscribe', username=user.username, next='/channel/' + user.id|string + '/main')}}" class="subscribe">Подписаться</a>
         {% else %}
         <a href="{{url_for('channel.unsubscribe', username=user.username, next='/channel/' + user.id|string + '/main')}}" class="subscribe">Отписаться</a>

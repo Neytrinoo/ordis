@@ -54,7 +54,7 @@
         <a href="{{url_for('channel.channel_lessons', user_id=user.id)}}" id="lessons_link">Уроки</a>
         <a href="" id="about_channel_link">О канале</a>
     </div>
-    {% if not current_user.is_following(user) %}
+    {% if not current_user.is_anonymous and not current_user.is_following(user) %}
     <a href="{{url_for('channel.subscribe', username=user.username, next=request.path)}}" class="subscribe">Подписаться</a>
     {% else %}
     <a href="{{url_for('channel.unsubscribe', username=user.username, next=request.path)}}" class="subscribe">Отписаться</a>
